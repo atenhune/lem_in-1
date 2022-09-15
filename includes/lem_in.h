@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/15 11:19:06 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/15 16:40:34 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,27 @@
 
 # define LEM_IN_H
 
-#include "libft.h"
+# include "libft.h"
 
-//stuff
+typedef struct s_room
+{
+	char	*name;
+	int		x;
+	int		y;
+	t_vec	links;
+	int		index;
+}			t_room;
+
+typedef struct s_lem
+{
+	int		ants;
+	t_vec	rooms;
+	int		start;
+	int		end;
+}			t_lem;
+
+int		init_data(t_lem *d);
+int		panic(t_lem *d, const char *msg);
+void	free_data(t_lem *d);
 
 #endif
