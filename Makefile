@@ -6,7 +6,7 @@
 #    By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/09/15 11:41:35 by altikka          ###   ########.fr        #
+#    Updated: 2022/09/15 17:02:07 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@ NAME = lem-in
 INCS = -I./includes -I./libft -I./libft/ft_printf/includes
 
 SRC_DIR = src/
-SRCS = $(SRC_DIR)main.c
-	   #$(SRC_DIR)init_data.c \
+SRCS = $(SRC_DIR)main.c \
+	   $(SRC_DIR)init_data.c \
+	   $(SRC_DIR)clean_up.c
 
 OBJ_DIR = obj/
 OBJS = $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
@@ -45,6 +46,7 @@ $(NAME):
 	@echo "   |     [ I ] "
 	@echo "    \     / "
 	@echo "     [ N ]$(BLACK) by altikka$(EOC)"
+	@echo ""
 	@make -C ./libft
 	@mkdir -p $(OBJ_DIR)
 	@echo "$(LGRAY)[lem_in] $(GREEN)Creating files...$(EOC)"
