@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:56:51 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/15 17:28:41 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/15 21:34:36 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	init_data(t_lem *d)
 {
 	ft_bzero(d, sizeof(*d));
-	if(ft_vecnew(&d->rooms, 2, sizeof(t_room)) < 0)
+	if (ft_vecnew(&d->rooms, 2, sizeof(t_room)) < 0)
 		return (panic(NULL, "Error: Couldn't initialize rooms."));
 	return (1);
 }
