@@ -6,19 +6,20 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/15 21:31:07 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/16 09:41:25 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-/* PLAN
- * 0: some options like -q etc
- * i: init data
- * ii: parse data
- * iii: solve
- * iv: print
- */
+/* 
+** PLAN
+** +: some options like -q etc
+** i: init data
+** ii: parse data
+** iii: solve
+** iv: print
+*/
 
 static void	test_print(t_lem *d)
 {
@@ -36,7 +37,7 @@ static void	test_print(t_lem *d)
 	}
 }
 
-static void	test_free(t_lem *d)
+static void	test_parse(t_lem *d)
 {
 	t_room	one;
 	t_room	two;
@@ -62,12 +63,12 @@ int	main(int argc, char **argv)
 {
 	t_lem	d;
 
-	//0: -q etc
+	//* +: -q etc
 	(void ) argc;
 	(void ) argv;
 	if (init_data(&d) < 0)
 		return (panic(NULL, "Error: Initializing data failed."));
-	test_free(&d);
+	test_parse(&d);
 	//if (parse_data(&d) < 0)
 	//	return (panic(NULL, "Error: Parsing data failed."));
 	//* iii: solve
