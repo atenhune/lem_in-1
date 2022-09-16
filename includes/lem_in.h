@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/15 16:40:34 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/16 11:03:51 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ typedef struct s_lem
 int		init_data(t_lem *d);
 int		panic(t_lem *d, const char *msg);
 void	free_data(t_lem *d);
+int		parse_data(t_lem *d);
 
 #endif
