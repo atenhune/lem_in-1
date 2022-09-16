@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 16:25:45 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/15 17:30:40 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/16 09:44:19 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ void	free_data(t_lem *d)
 		while (i < d->rooms.len)
 		{
 			temp = ft_vecget(&d->rooms, i);
-			free_room_data(temp);
+			if (temp)
+				free_room_data(temp);
 			i++;
 		}
 		temp = NULL;
-		ft_vecdel(&d->rooms);
 	}
+	ft_vecdel(&d->rooms);
 }
 
 int	panic(t_lem *d, const char *msg)
