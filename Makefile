@@ -6,7 +6,7 @@
 #    By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/09/15 17:02:07 by altikka          ###   ########.fr        #
+#    Updated: 2022/09/16 11:04:27 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ INCS = -I./includes -I./libft -I./libft/ft_printf/includes
 SRC_DIR = src/
 SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)init_data.c \
-	   $(SRC_DIR)clean_up.c
+	   $(SRC_DIR)clean_up.c \
+	   $(SRC_DIR)parse_data.c
 
 OBJ_DIR = obj/
 OBJS = $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
