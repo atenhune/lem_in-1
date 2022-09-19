@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/16 09:41:25 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/19 12:34:49 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	main(int argc, char **argv)
 	if (init_data(&d) < 0)
 		return (panic(NULL, "Error: Initializing data failed."));
 	test_parse(&d);
-	//if (parse_data(&d) < 0)
-	//	return (panic(NULL, "Error: Parsing data failed."));
+	if (parse_data(&d) < 0)
+		return (panic(NULL, "Error: Parsing data failed."));
 	//* iii: solve
 	//* iv: print
 	free_data(&d);
