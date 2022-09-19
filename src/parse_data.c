@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/16 19:41:34 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/19 19:05:26 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,41 @@
 ** iii: links
 */
 
-static int	get_links(t_lem *d, t_parse *p)
+int	the_links(t_lem *d, t_parse *p)
 {
 	(void )d;
 	p->state = DONE;
 	ft_printf("got links, DONE\n");
+	return (1);
 }
 
-static int	get_rooms(t_lem *d, t_parse *p)
+int	the_rooms(t_lem *d, t_parse *p)
 {
 	(void )d;
 	p->state = LINKS;
 	ft_printf("got rooms, next->links\n");
+	return (1);
+
 }
 
 static int	ft_isnbr(const char *str)
 {
+	(void )str;
 	return (1);
 }
 
-static int	get_ants(t_lem *d, t_parse *p)
+int	number_of_ants(t_lem *d, t_parse *p)
 {
 	(void )d;
 	p->state = ROOMS;
+	ft_isnbr(NULL);
 	ft_printf("got ants, next->rooms\n");
 	return (1);
 }
 
 static int	get_command(t_parse *p)
 {
+	(void )p;
 	return (1);
 }
 
@@ -71,11 +77,11 @@ int	parse_data(t_lem *d)
 	int		ret;
 
 	init_parser(&p);
-	while (return_next_line(0, &p.line, &ret))
+	while (return_next_line(0, &p.line, &ret) && p.state != DONE)
 	{
-		if (*ret == -1)
+		if (ret == -1)
 			return (panic(d, "Error: GNL exited with -1."));
-		if (*p.line[0] == '#')
+		if (p.line[0] == '#')
 		{
 			if (get_command(&p) < 0)
 				return (panic(d, "Error: Invalid command."));
@@ -83,9 +89,6 @@ int	parse_data(t_lem *d)
 		else if (g_parsers[p.state](d, &p) < 0)
 			return (panic(d, "Error: Invalid ants/rooms/links."));
 	}
-	if (p->state != DONE)
-	{
-		ft_printf("u sux\n");
-	}
+	ft_printf("DONE\n");
 	return (1);
 }
