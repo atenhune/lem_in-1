@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 16:25:45 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/16 09:44:19 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/20 22:12:32 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 static void	free_room_data(t_room *room)
 {
-	ft_strdel(&room->name);
-	ft_vecdel(&room->links);
+	if (room->name)
+		ft_strdel(&room->name);
+	if (room->links.data)
+		ft_vecdel(&room->links);
 }
 
 void	free_data(t_lem *d)
