@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/16 19:41:32 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/20 18:26:29 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,20 @@ typedef enum e_state
 	DONE
 }			t_state;
 
-typedef struct s_parse
+typedef struct s_parser
 {
+	t_vec	inputs;
 	char	*line;
-	t_state	state;
 	int		start;
 	int		end;
-}			t_parse;
+	t_state	state;
+}			t_parser;
 
-int		number_of_ants(t_lem *d, t_parse *p);
-int		the_rooms(t_lem *d, t_parse *p);
-int		the_links(t_lem *d, t_parse *p);
+int		number_of_ants(t_lem *d, t_parser *p);
+int		the_rooms(t_lem *d, t_parser *p);
+int		the_links(t_lem *d, t_parser *p);
 
-typedef int				(*t_parsers)(t_lem *, t_parse *);
+typedef int				(*t_parsers)(t_lem *, t_parser *);
 
 static const t_parsers	g_parsers[3] = {
 	number_of_ants,
@@ -76,6 +77,6 @@ static const t_parsers	g_parsers[3] = {
 int		init_data(t_lem *d);
 int		panic(t_lem *d, const char *msg);
 void	free_data(t_lem *d);
-int		parse_data(t_lem *d);
+int		parse_data(t_lem *d, t_vec *farm);
 
 #endif
