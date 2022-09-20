@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/20 18:26:28 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/20 22:24:01 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	the_links(t_lem *d, t_parser *p)
 int	the_rooms(t_lem *d, t_parser *p)
 {
 	(void )d;
-	//first check whether ' ' -splitted arr has something in [1]
-	//if not, we go to LINKS;
+	//check if splitted[0] && !splitted[1]
+	//if true, we go to LINKS;
 	p->state = LINKS;
 	ft_printf("got rooms, next->links\n");
 	return (1);
@@ -39,6 +39,8 @@ int	the_rooms(t_lem *d, t_parser *p)
 
 static int	ft_isnbr(const char *str)
 {
+	if (!*str)
+		return (0);
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
@@ -54,15 +56,15 @@ int	number_of_ants(t_lem *d, t_parser *p)
 		return (-1);
 	d->ants = ft_atoi(p->line);
 	if (d->ants < 0)
-		return (-1);//message: "You monster."
+		return (panic(NULL, "Error: Negative ammount of ants."));
 	if (d->ants == 0)
-		return (-1);//message: "No ants".
+		return (panic(NULL, "Error: No ants."));
 	p->state = ROOMS;
 	ft_printf("got ants, next->rooms\n");
 	return (1);
 }
 
-static int	collect_instructions(t_parser *p, const char c)
+static int	collect_lines(t_parser *p, const char c)
 {
 	if (ft_vecncat(&p->inputs, p->line, ft_strlen(p->line)) < 0)
 		return (-1);
@@ -72,7 +74,7 @@ static int	collect_instructions(t_parser *p, const char c)
 	return (1);
 }
 
-static int	get_commands(t_parser *p)
+static int	flag_commands(t_parser *p)
 {
 	if (!ft_strncmp(p->line, "##start", 8))
 		p->start++;
@@ -80,8 +82,8 @@ static int	get_commands(t_parser *p)
 		p->end++;
 	return (1);
 }
-//FREE
-////////////////////////////////////////////////////
+
+//FREE//////////////////////////////////////////////
 static void	free_parser_data(t_parser *p)
 {
 	if (p->inputs.data)
@@ -108,7 +110,7 @@ static int	return_next_line(const int fd, char **line, int *ret)
 static int	init_parser(t_parser *p)
 {
 	ft_bzero(p, sizeof(*p));
-	if (ft_vecnew(&p->inputs, 1, sizeof(char)) < 0)//'1' could be bigger
+	if (ft_vecnew(&p->inputs, 1, sizeof(char)) < 0) //'1' could be bigger
 		return (-1);
 	p->line = NULL;
 	p->state = ANTS;
@@ -125,18 +127,18 @@ int	parse_data(t_lem *d, t_vec *farm)
 	(void)farm;
 	if (init_parser(&p) < 0)
 		return (panic(NULL, "Error: Initializing parser failed."));
-	while (return_next_line(0, &p.line, &ret) && p.state != DONE)//remove DONE later
+	while (return_next_line(0, &p.line, &ret) && p.state != DONE) //del later
 	{
 		if (ret == -1)
 			return (free_parser(&p, "Error: GNL error."));
 		if (p.line[0] == '#')
 		{
-			if (get_commands(&p) < 0)
+			if (flag_commands(&p) < 0)
 				return (free_parser(&p, "Error: Invalid command."));
 		}
 		else if (g_parsers[p.state](d, &p) < 0)
 			return (free_parser(&p, "Error: Invalid ants/rooms/links."));
-		if (collect_instructions(&p, '\n') < 0)
+		if (collect_lines(&p, '\n') < 0)
 			return (free_parser(&p, "Error: Memory issue."));
 	}
 	ft_printf("DONE\n");
