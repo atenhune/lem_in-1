@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/19 12:34:49 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/20 18:28:13 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	test_parse(t_lem *d)
 int	main(int argc, char **argv)
 {
 	t_lem	d;
+	t_vec	farm;
 
 	//* +: -q etc
 	(void ) argc;
@@ -69,8 +70,8 @@ int	main(int argc, char **argv)
 	if (init_data(&d) < 0)
 		return (panic(NULL, "Error: Initializing data failed."));
 	test_parse(&d);
-	if (parse_data(&d) < 0)
-		return (panic(NULL, "Error: Parsing data failed."));
+	if (parse_data(&d, &farm) < 0)
+		return (panic(&d, "Error: Parsing data failed."));
 	//* iii: solve
 	//* iv: print
 	free_data(&d);
