@@ -6,17 +6,32 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/21 16:12:07 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/21 18:23:47 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int	validate_room(const char **room)
+static size_t	ft_cntchr(const char *str, const char c)
+{
+	size_t	count;
+
+	count = 0;
+	while (*str)
+	{
+		if (*str == c)
+			count++;
+	}
+	return (count);
+}
+
+static int	validate_room(t_parser *p, const char **room)
 {
 	char	*s;
 	size_t	i;
 
+	if (ft_cntchr(p->line, ' ') != 2)
+		return (-1);
 	i = 0;
 	return (1);
 }
@@ -57,7 +72,7 @@ int	parse_rooms(t_lem *d, t_parser *p)
 		ft_strdelarr(&room);
 		relay_to_links(d, p);
 	}
-	if (validate_room(room) < 0)
+	if (validate_room(p, room) < 0)
 	{
 		ft_strdelarr(&room);
 		return (free_parser(p, "Error: invalid line."));
