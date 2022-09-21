@@ -6,26 +6,11 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:35:11 by altikka           #+#    #+#             */
-/*   Updated: 2021/12/22 14:17:51 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/21 09:29:02 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char	**ft_free_arr(char **as, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		free(as[i]);
-		i++;
-	}
-	free(as);
-	as = NULL;
-	return (as);
-}
 
 static char	*ft_skipchr(char const *str, char c)
 {
@@ -64,11 +49,11 @@ char	**ft_strsplit(char const *s, char c)
 	char	*ptr;
 	size_t	i;
 
-	if (s == NULL)
-		return ((char **) NULL);
+	if (!s)
+		return (NULL);
 	arr = (char **)malloc(sizeof(*arr) * (ft_btwchr(s, c) + 1));
-	if (arr == NULL)
-		return ((char **) NULL);
+	if (!arr)
+		return (NULL);
 	i = 0;
 	while (*s)
 	{
@@ -78,8 +63,8 @@ char	**ft_strsplit(char const *s, char c)
 			ptr = (char *) s;
 			s = ft_nextchr(s, c);
 			arr[i] = ft_strndup(ptr, (size_t)(s - ptr));
-			if (arr[i] == NULL)
-				return ((char **) ft_free_arr(arr, i));
+			if (!arr[i])
+				return (ft_strdelarr(&arr), NULL);
 			i++;
 		}
 	}
