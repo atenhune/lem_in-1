@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/20 22:24:01 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/21 09:02:21 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** iii: links
 */
 
-int	the_links(t_lem *d, t_parser *p)
+int	parse_links(t_lem *d, t_parser *p)
 {
 	(void )d;
 	p->state = DONE;
@@ -27,30 +27,15 @@ int	the_links(t_lem *d, t_parser *p)
 	return (1);
 }
 
-int	the_rooms(t_lem *d, t_parser *p)
+int	parse_rooms(t_lem *d, t_parser *p)
 {
 	(void )d;
-	//check if splitted[0] && !splitted[1]
-	//if true, we go to LINKS;
 	p->state = LINKS;
 	ft_printf("got rooms, next->links\n");
 	return (1);
 }
 
-static int	ft_isnbr(const char *str)
-{
-	if (!*str)
-		return (0);
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-			return (0);
-		str++;
-	}
-	return (1);
-}
-
-int	number_of_ants(t_lem *d, t_parser *p)
+int	parse_ants(t_lem *d, t_parser *p)
 {
 	if (!ft_isnbr(p->line))
 		return (-1);
@@ -80,42 +65,6 @@ static int	flag_commands(t_parser *p)
 		p->start++;
 	else if (!ft_strncmp(p->line, "##end", 6))
 		p->end++;
-	return (1);
-}
-
-//FREE//////////////////////////////////////////////
-static void	free_parser_data(t_parser *p)
-{
-	if (p->inputs.data)
-		ft_vecdel(&p->inputs);
-	if (p->line)
-		ft_strdel(&p->line);
-}
-
-static int	free_parser(t_parser *p, const char *msg)
-{
-	ft_putendl_fd(msg, 2);
-	if (p)
-		free_parser_data(p);
-	return (-1);
-}
-////////////////////////////////////////////////////
-
-static int	return_next_line(const int fd, char **line, int *ret)
-{
-	*ret = get_next_line(fd, line);
-	return (*ret);
-}
-
-static int	init_parser(t_parser *p)
-{
-	ft_bzero(p, sizeof(*p));
-	if (ft_vecnew(&p->inputs, 1, sizeof(char)) < 0) //'1' could be bigger
-		return (-1);
-	p->line = NULL;
-	p->state = ANTS;
-	p->start = 0;
-	p->end = 0;
 	return (1);
 }
 
