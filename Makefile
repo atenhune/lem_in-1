@@ -6,7 +6,7 @@
 #    By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/09/21 08:40:13 by altikka          ###   ########.fr        #
+#    Updated: 2022/09/21 11:23:19 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)init_data.c \
 	   $(SRC_DIR)clean_up.c \
 	   $(SRC_DIR)parse_data.c \
-	   $(SRC_DIR)parse_utils.c
+	   $(SRC_DIR)parse_utils.c \
+	   $(SRC_DIR)parse_ants.c \
+	   $(SRC_DIR)parse_rooms.c \
+	   $(SRC_DIR)parse_links.c
 
 OBJ_DIR = obj/
 OBJS = $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
@@ -41,13 +44,13 @@ all: $(NAME)
 
 $(NAME):
 	@echo "$(EOC)"
-	@echo "     [ L ] "
-	@echo "    /     \ "
-	@echo " [ E ]   [ M ] "
-	@echo "   |       | "
-	@echo "   |     [ I ] "
-	@echo "    \     / "
-	@echo "     [ N ]$(BLACK) by altikka$(EOC)"
+	@echo "$(BLACK)by atenhune $(EOC)[ L ] "
+	@echo "           /     \ "
+	@echo "        [ E ]   [ M ] "
+	@echo "          |       | "
+	@echo "          |     [ I ] "
+	@echo "           \     / "
+	@echo "            [ N ]$(BLACK) by altikka$(EOC)"
 	@echo ""
 	@make -C ./libft
 	@mkdir -p $(OBJ_DIR)
