@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:46:38 by altikka           #+#    #+#             */
-/*   Updated: 2022/06/15 19:38:47 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/21 09:03:07 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <string.h>
 # include <stdint.h>
 
-# include "get_next_line.h"
 # include "vec.h"
+# include "get_next_line.h"
 # include "ft_printf.h"
 
 typedef struct s_list
@@ -107,5 +107,10 @@ char		*ft_anytoa(uintmax_t n, int base, int sign, int casing);
 long		ft_pow(long x, long y);
 long double	ft_powl(long double x, long double y);
 int			ft_isinf(double x);
+
+void		ft_strdelarr(char ***asa);
+void		ft_memdelarr(void ***apa);
+
+int			ft_isnbr(const char *str);
 
 #endif
