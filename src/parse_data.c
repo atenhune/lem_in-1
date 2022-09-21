@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/21 09:02:21 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/21 11:15:04 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,6 @@
 ** ii: rooms
 ** iii: links
 */
-
-int	parse_links(t_lem *d, t_parser *p)
-{
-	(void )d;
-	p->state = DONE;
-	ft_printf("got links, DONE\n");
-	return (1);
-}
-
-int	parse_rooms(t_lem *d, t_parser *p)
-{
-	(void )d;
-	p->state = LINKS;
-	ft_printf("got rooms, next->links\n");
-	return (1);
-}
-
-int	parse_ants(t_lem *d, t_parser *p)
-{
-	if (!ft_isnbr(p->line))
-		return (-1);
-	d->ants = ft_atoi(p->line);
-	if (d->ants < 0)
-		return (panic(NULL, "Error: Negative ammount of ants."));
-	if (d->ants == 0)
-		return (panic(NULL, "Error: No ants."));
-	p->state = ROOMS;
-	ft_printf("got ants, next->rooms\n");
-	return (1);
-}
 
 static int	collect_lines(t_parser *p, const char c)
 {
@@ -76,10 +46,10 @@ int	parse_data(t_lem *d, t_vec *farm)
 	(void)farm;
 	if (init_parser(&p) < 0)
 		return (panic(NULL, "Error: Initializing parser failed."));
-	while (return_next_line(0, &p.line, &ret) && p.state != DONE) //del later
+	while (return_next_line(0, &p.line, &ret) && p.state != DONE) //del DONE
 	{
 		if (ret == -1)
-			return (free_parser(&p, "Error: GNL error."));
+			return (free_parser(&p, "Error: GNL issue."));
 		if (p.line[0] == '#')
 		{
 			if (flag_commands(&p) < 0)
