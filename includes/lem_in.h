@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/20 18:26:29 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/21 08:47:55 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "libft.h"
 
 /*
-**STRUCTS FOR THE PROGRAM
+**STRUCTIONS FOR THE PROGRAM
 */
 
 typedef struct s_room
@@ -38,7 +38,7 @@ typedef struct s_lem
 }			t_lem;
 
 /*
-**STRUCTS & FUNCTIONS FOR THE PARSER
+**STRUCTIONS & FUNCTIONS FOR THE PARSER
 */
 
 typedef enum e_state
@@ -58,17 +58,22 @@ typedef struct s_parser
 	t_state	state;
 }			t_parser;
 
-int		number_of_ants(t_lem *d, t_parser *p);
-int		the_rooms(t_lem *d, t_parser *p);
-int		the_links(t_lem *d, t_parser *p);
+int		parse_ants(t_lem *d, t_parser *p);
+int		parse_rooms(t_lem *d, t_parser *p);
+int		parse_links(t_lem *d, t_parser *p);
 
 typedef int				(*t_parsers)(t_lem *, t_parser *);
 
 static const t_parsers	g_parsers[3] = {
-	number_of_ants,
-	the_rooms,
-	the_links
+	parse_ants,
+	parse_rooms,
+	parse_links
 };
+
+int		init_parser(t_parser *p);
+int		return_next_line(const int fd, char **line, int *ret);
+int		free_parser(t_parser *p, const char *msg);
+void	free_parser_data(t_parser *p);
 
 /*
 **FUNCTIONS FOR THE PROGRAM
