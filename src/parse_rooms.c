@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/21 18:23:47 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/22 19:51:40 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ static int	validate_room(t_parser *p, const char **room)
 	if (ft_cntchr(p->line, ' ') != 2)
 		return (-1);
 	i = 0;
+	while (room[i])
+	{
+		s = room[i];
+		if (i == 0 && (*s == 'L' || ft_strchr(s, '-')))
+			return (-1); //add err
+		i++;
+	}
 	return (1);
 }
 
