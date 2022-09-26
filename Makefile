@@ -6,7 +6,7 @@
 #    By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/09/21 11:23:19 by altikka          ###   ########.fr        #
+#    Updated: 2022/09/26 12:21:47 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)parse_utils.c \
 	   $(SRC_DIR)parse_ants.c \
 	   $(SRC_DIR)parse_rooms.c \
+	   $(SRC_DIR)hash.c \
 	   $(SRC_DIR)parse_links.c
 
 OBJ_DIR = obj/
