@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/21 11:15:04 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/26 16:11:25 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ int	parse_data(t_lem *d, t_vec *farm)
 		if (collect_lines(&p, '\n') < 0)
 			return (free_parser(&p, "Error: Memory issue."));
 	}
-	ft_printf("DONE\n");
-	ft_printf("GOT %d ANTS\n", d->ants);
+	ft_printf("\ndone with ants/rooms/links.\n\n");
+	ft_printf("\ngot %d ants.\n\n", d->ants);
 	write(1, p.inputs.data, p.inputs.len);
+	ft_printf("\ndone with parsing.\n\n");
 	free_parser_data(&p);
 	return (1);
 }
