@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/21 08:47:55 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/26 12:20:35 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define LEM_IN_H
 
-# include "libft.h"
+# include "hashmap.h"
 
 /*
 **STRUCTIONS FOR THE PROGRAM
