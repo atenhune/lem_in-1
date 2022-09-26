@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/20 18:28:13 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/26 16:10:56 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,21 @@
 static void	test_print(t_lem *d)
 {
 	t_room	*temp;
-	int		*n;
+	//int		*n;
 	size_t	i;
 
 	i = 0;
 	while (i < d->rooms.len)
 	{
 		temp = ft_vecget(&d->rooms, i);
-		n = ft_vecget(&temp->links, 0);
-		ft_printf("name: %s | link: %d\n", temp->name, *n);
+		//n = ft_vecget(&temp->links, 0);
+		//ft_printf("name: %s | link: %d\n", temp->name, *n);
+		ft_printf("room [%d], name: %s\n", (i + 1), temp->name);
 		i++;
 	}
+	ft_printf("\n");
 }
-
+/*
 static void	test_parse(t_lem *d)
 {
 	t_room	one;
@@ -58,7 +60,7 @@ static void	test_parse(t_lem *d)
 	ft_vecpush(&d->rooms, &two);
 	test_print(d);
 }
-
+*/
 int	main(int argc, char **argv)
 {
 	t_lem	d;
@@ -69,12 +71,13 @@ int	main(int argc, char **argv)
 	(void ) argv;
 	if (init_data(&d) < 0)
 		return (panic(NULL, "Error: Initializing data failed."));
-	test_parse(&d);
+	//test_parse(&d);
 	if (parse_data(&d, &farm) < 0)
 		return (panic(&d, "Error: Parsing data failed."));
 	//* iii: solve
 	//* iv: print
+	test_print(&d);
 	free_data(&d);
-	//system("leaks lem-in");
+	system("leaks -q lem-in");
 	return (0);
 }
