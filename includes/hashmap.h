@@ -15,7 +15,7 @@ typedef struct s_hash
 
 
 unsigned long	hash(char *name);
-int				hash_table_insert(char *room, t_hash *hash_table);
+int				hash_insert(char *room, t_hash *hash_table);
 int				hash_lookup(char *room, t_hash *hash_table);
 
 #endif
