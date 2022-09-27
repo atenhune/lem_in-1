@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/26 16:10:56 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/27 20:19:00 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ static void	test_print(t_lem *d)
 	//int		*n;
 	size_t	i;
 
+	ft_printf("start: %d, end: %d\n", d->start, d->end);
 	i = 0;
 	while (i < d->rooms.len)
 	{
 		temp = ft_vecget(&d->rooms, i);
 		//n = ft_vecget(&temp->links, 0);
 		//ft_printf("name: %s | link: %d\n", temp->name, *n);
-		ft_printf("room [%d], name: %s\n", (i + 1), temp->name);
+		ft_printf("room [%d], name: %s, index: |%d|\n", (i), temp->name, temp->index);
 		i++;
 	}
 	ft_printf("\n");
