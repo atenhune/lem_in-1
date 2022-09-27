@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 08:35:52 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/21 08:49:26 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/27 17:39:37 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,28 @@ int	return_next_line(const int fd, char **line, int *ret)
 	return (*ret);
 }
 
+static void	init_hash_table(t_parser *p)
+{
+	int	i;
+
+	i = 0;
+	while(i < TABLE_SIZE)
+	{
+		p->table[i].room = NULL;
+		p->table[i].index = -1;
+		i++;
+	}
+}
+
 int	init_parser(t_parser *p)
 {
 	ft_bzero(p, sizeof(*p));
-	if (ft_vecnew(&p->inputs, 1, sizeof(char)) < 0) //'1' could be bigger
+	if (ft_vecnew(&p->inputs, 32, sizeof(char)) < 0) //32 min chars in map
 		return (-1);
 	p->line = NULL;
-	p->state = ANTS;
 	p->start = 0;
 	p->end = 0;
+	p->state = ANTS;
+	init_hash_table(p);
 	return (1);
 }
