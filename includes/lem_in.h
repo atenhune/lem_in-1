@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/26 12:20:35 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/27 20:14:12 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_lem
 	t_vec	rooms;
 	int		start;
 	int		end;
+	int		**links;
 }			t_lem;
 
 /*
@@ -56,6 +57,7 @@ typedef struct s_parser
 	int		start;
 	int		end;
 	t_state	state;
+	t_hash	table[TABLE_SIZE];
 }			t_parser;
 
 int		parse_ants(t_lem *d, t_parser *p);
