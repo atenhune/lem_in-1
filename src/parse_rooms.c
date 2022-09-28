@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/28 09:51:56 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/28 12:38:02 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	lookup_and_insert(t_lem *d, t_parser *p)
 	{
 		temp = ft_vecget(&d->rooms, i);
 		if (!hash_lookup(temp->name, *(&p->table)))
-			return (panic(NULL, "Error: Duplicated room."));
+			return (panic(NULL, "Error: Duplicated room in hash table."));
 		if (!hash_insert(temp->name, temp->index, *(&p->table)))
 			return (panic(NULL, "Error: Hash table full."));
 		i++;
