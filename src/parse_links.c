@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:14:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/27 20:46:19 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/28 09:41:23 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,23 @@
 int	parse_links(t_lem *d, t_parser *p)
 {
 	char	*ptr;
-	int		target;
-	int		to;
 	t_room	*temp;
+	int		from;
+	int		to;
 
 	ptr = ft_strchr(p->line, '-');
+	if (!ptr)
+		return (panic(NULL, "Error: Invalid link info."));
 	*ptr = '\0';
-	target = hash_get(p->line, *(&p->table));
-	if (target == -1)
+	from = hash_get(p->line, *(&p->table));
+	if (from == -1)
 		return (panic(NULL, "Error: Invalid link (1)."));
 	*ptr++ = '-';
 	to = hash_get(ptr, *(&p->table));
-	if (to== -1)
+	if (to == -1)
 		return (panic(NULL, "Error: Invalid link (2)."));
-	temp = ft_vecget(&d->rooms, target);
+	temp = ft_vecget(&d->rooms, from);
 	ft_vecpush(&temp->links, &to);
 	//p->state = DONE;
-	ft_printf("got links, DONE\n");//del
 	return (1);
 }
