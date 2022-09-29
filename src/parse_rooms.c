@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/28 12:38:02 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/29 11:46:31 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ static int	lookup_and_insert(t_lem *d, t_parser *p)
 
 static int	relay_to_links(t_lem *d, t_parser *p)
 {
-	if (d->start == -1 || d->end == -1) //+check that no multiple starts/ends
-		return (panic(NULL, "Error: Missing start/end room."));
+	if (d->start == -1 || d->end == -1 || p->start != 1 || p->end != 1)
+		return (panic(NULL, "Error: Missing or multiple start/end rooms."));
 	if (!ft_strchr(p->line, '-'))
 		return (panic(NULL, "Error: No links."));
 	if (lookup_and_insert(d, p) < 0)
