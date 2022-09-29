@@ -6,7 +6,7 @@
 #    By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/09/26 12:21:47 by altikka          ###   ########.fr        #
+#    Updated: 2022/09/29 11:56:39 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC_DIR = src/
 SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)init_data.c \
 	   $(SRC_DIR)clean_up.c \
+	   $(SRC_DIR)clean_up_parser.c \
 	   $(SRC_DIR)parse_data.c \
 	   $(SRC_DIR)parse_utils.c \
 	   $(SRC_DIR)parse_ants.c \
