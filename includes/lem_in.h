@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/28 09:38:05 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:09:25 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef struct s_lem
 {
 	int		ants;
 	t_vec	rooms;
+	int		**links;
 	int		start;
 	int		end;
-	int		**links;
 }			t_lem;
 
 /*
@@ -76,6 +76,7 @@ int		init_parser(t_parser *p);
 int		return_next_line(const int fd, char **line, int *ret);
 int		panic_parser(t_parser *p, const char *msg);
 void	free_parser(t_parser *p);
+int		create_links(t_lem *d);
 
 /*
 **FUNCTIONS FOR THE PROGRAM
