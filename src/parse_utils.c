@@ -6,56 +6,60 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 08:35:52 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/28 09:44:02 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:10:08 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	free_parser(t_parser *p)
+static void	populate_grid(t_lem *d)
 {
-	if (p->inputs.data)
-		ft_vecdel(&p->inputs);
-	if (p->line)
-		ft_strdel(&p->line);
+	t_room	*temp;
+	int		*links;
+	size_t	i;
+
+	i = 0;
+	while (i < d->rooms.len)
+	{
+		temp = ft_vecget(&d->rooms, i);
+		links = (int *)temp->links.data;
+		ft_memset(d->links[i], -1, sizeof(int) * (temp->links.len + 1));
+		ft_memcpy(d->links[i], links, sizeof(int) * temp->links.len);
+		i++;
+	}
 }
 
-int	panic_parser(t_parser *p, const char *msg)
+static int	allocate_grid(t_lem *d)
 {
-	ft_putendl_fd(msg, 2);
-	if (p)
-		free_parser(p);
-	return (-1);
+	t_room	*temp;
+	size_t	i;
+
+	d->links = (int **)malloc(sizeof(int *) * (d->rooms.len + 1));
+	if (!d->links)
+		return (panic(NULL, "Error: grid's memory allocation failed."));
+	i = 0;
+	while (i < d->rooms.len)
+	{
+		temp = ft_vecget(&d->rooms, i);
+		d->links[i] = (int *)malloc(sizeof(int) * (temp->links.len + 1));
+		if (!d->links[i])
+			return (panic(NULL, "Error: grid's pointer allocation failed."));
+		i++;
+	}
+	d->links[i] = (int *) '\0';
+	return (1);
+}
+
+int	create_links(t_lem *d)
+{
+	if (allocate_grid(d) < 0)
+		return (panic(NULL, "Error: Couldn't create links."));
+	populate_grid(d);
+	return (1);
 }
 
 int	return_next_line(const int fd, char **line, int *ret)
 {
 	*ret = get_next_line(fd, line);
 	return (*ret);
-}
-
-static void	init_hash_table(t_parser *p)
-{
-	int	i;
-
-	i = 0;
-	while (i < TABLE_SIZE)
-	{
-		p->table[i].room = NULL;
-		p->table[i].index = -1;
-		i++;
-	}
-}
-
-int	init_parser(t_parser *p)
-{
-	ft_bzero(p, sizeof(*p));
-	if (ft_vecnew(&p->inputs, 32, sizeof(char)) < 0) //32 min chars in map
-		return (-1); //what
-	p->line = NULL;
-	p->start = 0;
-	p->end = 0;
-	p->state = ANTS;
-	init_hash_table(p);
-	return (1);
 }
