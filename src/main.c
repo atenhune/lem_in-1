@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/28 09:58:43 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:10:06 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,25 @@
 ** iii: solve
 ** iv: print
 */
+
+static void	test_links_print(t_lem *d)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (d->links[i])
+	{
+		while (d->links[i][j] != -1)
+		{
+			ft_printf("%d ", d->links[i][j++]);
+		}
+		ft_printf("\n");
+		j = 0;
+		i++;
+	}
+}
 
 static void	test_print(t_lem *d, t_vec *farm)
 {
@@ -65,6 +84,7 @@ int	main(int argc, char **argv)
 	//* iii: solve()
 	//* iv: print()
 	test_print(&d, &farm); //debugging
+	test_links_print(&d); //debugging
 	ft_vecdel(&farm); //will be freed in print()
 	free_data(&d);
 	system("leaks -q lem-in");
