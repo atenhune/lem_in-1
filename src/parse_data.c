@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/28 09:55:41 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:08:38 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,18 @@ static int	collect_lines(t_parser *p, const char c)
 	return (1);
 }
 
-static int	save_commands(t_lem *d, t_parser *p) //++ here, if 2: error
+static int	save_commands(t_lem *d, t_parser *p)
 {
 	if (!ft_strncmp(p->line, "##start", 8))
+	{
 		d->start = d->rooms.len + 1;
+		p->start++;
+	}
 	else if (!ft_strncmp(p->line, "##end", 6))
+	{
 		d->end = d->rooms.len + 1;
+		p->end++;
+	}
 	return (1);
 }
 
@@ -57,11 +63,13 @@ int	parse_data(t_lem *d, t_vec *farm)
 		else if (g_parsers[p.state](d, &p) < 0)
 			return (panic_parser(&p, "Error: Invalid ants/rooms/links."));
 		if (collect_lines(&p, '\n') < 0)
-			return (panic_parser(&p, "Error: Memory issue."));
+			return (panic_parser(&p, "Error: Memory issue collecting lines."));
 	}
 	ft_printf("got links, DONE\n");//del
-	if (ft_veccpy(farm, &p.inputs) < 0)
-		return (panic_parser(&p, "Error: Memory issue while saving farm."));
+	if (create_links(d) < 0)
+		return (panic_parser(&p, "Error: Memory issue creating links."));
+	if (ft_vecappend(farm, &p.inputs) < 0)
+		return (panic_parser(&p, "Error: Memory issue saving farm."));
 	free_parser(&p);
 	ft_printf("done with parsing.\n\n");//del
 	return (1);
