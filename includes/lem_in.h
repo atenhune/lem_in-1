@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 07:46:28 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 12:38:35 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 # define LEM_IN_H
 
+# include "libft.h"
+# include "data.h"
 # include "hashmap.h"
+# include "pathset.h"
+# include "bfs.h"
+
+////////////////////
+# include <stdio.h>
+////////////////////
 
 /*
 **STRUCTIONS FOR THE PROGRAM
@@ -29,14 +37,15 @@ typedef struct s_room
 	int		index;
 }			t_room;
 
-typedef struct s_lem
-{
-	int		ants;
-	t_vec	rooms;
-	int		**links;
-	int		start;
-	int		end;
-}			t_lem;
+// typedef struct s_lem
+// {
+// 	int		ants;
+// 	t_vec	rooms;
+// 	int		**links;
+// 	int		room_count; // <------ antti muuttaa!
+// 	int		start;
+// 	int		end;
+// }			t_lem;
 
 /*
 **STRUCTIONS & FUNCTIONS FOR THE PARSER
@@ -85,5 +94,6 @@ int		init_data(t_lem *d, t_vec *farm);
 int		panic(t_lem *d, const char *msg);
 void	free_data(t_lem *d);
 int		parse_data(t_lem *d, t_vec *farm);
+int 	solve(t_lem *d);
 
 #endif
