@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:51:41 by atenhune          #+#    #+#             */
-/*   Updated: 2022/09/30 11:27:34 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/09/30 22:27:15 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ typedef struct s_bfs
 	int			**flow;
 	int			*fl_dir;
 	t_pathset	*best;
-} t_bfs;
+}				t_bfs;
 
 void	debug_bfs(t_lem *d, t_bfs *bf, t_pathset *set);
 void	print_child(t_lem *d, t_pathset *set);
