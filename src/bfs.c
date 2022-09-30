@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:23:31 by antti             #+#    #+#             */
-/*   Updated: 2022/09/30 14:50:38 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:14:27 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,38 @@
 void	zero_pathset(t_lem *d, t_pathset *set)
 {
 	int	i;
-	int	j;
 
-	i = 0;
 	set->len = 0;
 	set->count = 0;
 	set->turns = 0;
 	set->index = 0;
 	set->seen_len = 0;
 	set->flag = 0;
-	set->state = 0;
-	while (i < (d->room_count * 2)) ///// !!!!!!!!!!<---- WAU!!!
+	ft_memset(set->seen, -1, sizeof(int) * (d->room_count * 2));
+	ft_memset(set->first, 0, sizeof(int) * (d->room_count));
+	ft_memset(set->parent, -1, sizeof(int) * (d->room_count));
+	ft_memset(set->used, 0, sizeof(int) * (d->room_count));
+	ft_memset(set->weight, -1, sizeof(int) * (d->room_count));
+	ft_memset(set->from, -1, sizeof(int) * (d->room_count));
+	i = 0;
+	while (i < d->room_count)
 	{
-		j = 0;
-		if (i < d->room_count)
-		{
-			set->cur_path[i] = -1;
-			set->temp[i] = -1;
-			set->used[i] = 0;
-			set->first[i] = 0;
-			set->weight[i] = -1;
-			set->parent[i] = -1;
-			set->from[i] = -1;
-			while (j < d->room_count)
-			{
-				set->to[i][j] = -1;
-				set->child[i][j] = -1;
-				set->entries[i][j] = 0;
-				set->paths[i][j] = -1;
-				j++;
-			}
-		}
-		set->seen[i] = -1;
+		set->paths[i][0] = -1;
+		set->child[i][0] = -1;
+		set->to[i][0] = -1;
+		set->entries[i][0] = 0;
+		set->entries[i][1] = 0;
 		i++;
 	}
+	// while (i < d->room_count)
+	// {
+	// 	ft_memset(set->paths[i], -1, sizeof(int) * d->room_count);
+	// 	ft_memset(set->child[i], -1, sizeof(int) * d->room_count);
+	// 	ft_memset(set->to[i], -1, sizeof(int) * d->room_count);
+	// 	if (i < 2)
+	// 		ft_memset(set->entries[i], 0, sizeof(int) * 2);
+	// 	i++;
+	// }
 }
 
 void	init_pathset(t_lem *d, t_pathset *set)
@@ -56,21 +54,22 @@ void	init_pathset(t_lem *d, t_pathset *set)
 	int		i;
 
 	i = 0;
-	set->paths = (int **)malloc(sizeof(int *) * d->room_count);
-	set->entries = (int **)malloc(sizeof(int *) * d->room_count);
-	set->child = (int **)malloc(sizeof(int *) * d->room_count);
-	set->to = (int **)malloc(sizeof(int *) * d->room_count);
-	set->temp = malloc(sizeof(int) * d->room_count);
+	// set->temp = malloc(sizeof(int) * d->room_count);
+	// set->cur_path = malloc(sizeof(int) * d->room_count);
 	set->seen = malloc(sizeof(int) * (d->room_count * 2)); // remember meeee!!!!!!!!!!!!1
 	set->used = malloc(sizeof(int) * d->room_count);
 	set->first = malloc(sizeof(int) * d->room_count);
 	set->weight = malloc(sizeof(int) * d->room_count);
 	set->parent = malloc(sizeof(int) * d->room_count);
-	set->cur_path = malloc(sizeof(int) * d->room_count);
 	set->from = malloc(sizeof(int) * d->room_count);
+
+	set->paths = (int **)malloc(sizeof(int *) * d->room_count);
+	set->entries = (int **)malloc(sizeof(int *) * d->room_count);
+	set->child = (int **)malloc(sizeof(int *) * d->room_count);
+	set->to = (int **)malloc(sizeof(int *) * d->room_count);
 	while (i < d->room_count)
 	{
-		set->entries[i] = (int *)malloc(sizeof(int) * d->room_count);
+		set->entries[i] = (int *)malloc(sizeof(int) * 2);
 		set->to[i] = (int *)malloc(sizeof(int) * d->room_count);
 		set->child[i] =(int *)malloc(sizeof(int) * d->room_count);
 		set->paths[i++] = (int *)malloc(sizeof(int) * d->room_count);
@@ -196,9 +195,15 @@ void	back_flow(t_bfs *bf, t_pathset *set, t_lem *d)
 		set->parent[bf->fl_dir[set->cur]] = set->cur;
 	set->from[bf->fl_dir[set->cur]] = set->cur;
 	if (!set->first[set->cur])
+	{
 		set->child[set->cur][0] =  bf->fl_dir[set->cur];
+		set->child[set->cur][1] =  -1;
+	}
 	else
+	{
 		set->to[set->cur][0] = bf->fl_dir[set->cur];
+		set->to[set->cur][1] = -1;
+	}
 	set->flag = 0;
 	set->first[set->cur] = 1;
 }
@@ -221,26 +226,26 @@ void	update_seen(t_lem *d, t_bfs *bf, t_pathset *set)
 	if (set->flag)
 	{
 		// printf("\nKEISSI 2\n");
-		if (set->cur == 1175)
-		{
-			if (set->child[1175][0] != -1)
-				printf("Hxu2 in CASE II from: \n");
-			else
-				printf("Hxu2 in CASE II parent: \n");
-		}
+		// if (set->cur == 1175)
+		// {
+		// 	if (set->child[1175][0] != -1)
+		// 		printf("Hxu2 in CASE II from: \n");
+		// 	else
+		// 		printf("Hxu2 in CASE II parent: \n");
+		// }
 		back_flow(bf, set, d);
 		return ;
 	}
 	// CASE III
 	if (bf->fl_dir[set->cur] != -1)
 	{
-		if (set->cur == 1175 && set->entries[1175][1] == 1)
-		{
-			if (set->child[1175][0] != -1)
-				printf("Hxu2 in CASE III from: \n");
-			else
-				printf("Hxu2 in CASE III parent: \n");
-		}
+		// if (set->cur == 1175 && set->entries[1175][1] == 1)
+		// {
+		// 	if (set->child[1175][0] != -1)
+		// 		printf("Hxu2 in CASE III from: \n");
+		// 	else
+		// 		printf("Hxu2 in CASE III parent: \n");
+		// }
 		while (d->links[set->cur][i] != -1)
 		{
 			prev = (set->child[set->cur][0] != -1) ? set->from[set->cur] : set->parent[set->cur];
@@ -257,9 +262,15 @@ void	update_seen(t_lem *d, t_bfs *bf, t_pathset *set)
 				// if (set->parent[set->cur] == set->from[set->cur])
 					// set->child[set->cur][j++] = d->links[set->cur][i];
 				if (!set->first[set->cur])
+				{
 					set->child[set->cur][j++] = d->links[set->cur][i];
+					set->child[set->cur][j] = -1;
+				}
 				else
+				{
 					set->to[set->cur][j++] = d->links[set->cur][i];
+					set->to[set->cur][j] = -1;
+				}
 			}
 			i++;
 		}
@@ -267,13 +278,13 @@ void	update_seen(t_lem *d, t_bfs *bf, t_pathset *set)
 		return ;
 	}
 	// CASE I
-	if (set->cur == 1175)
-	{
-		if (set->child[1175][0] != -1)
-			printf("Hxu2 in CASE I from: \n");
-		else
-			printf("Hxu2 in CASE I parent: \n");
-	}
+	// if (set->cur == 1175)
+	// {
+	// 	if (set->child[1175][0] != -1)
+	// 		printf("Hxu2 in CASE I from: \n");
+	// 	else
+	// 		printf("Hxu2 in CASE I parent: \n");
+	// }
 	while (d->links[set->cur][i] != -1)
 	{
 		prev = (set->child[set->cur][0] != -1) ? set->from[set->cur] : set->parent[set->cur];
@@ -287,9 +298,15 @@ void	update_seen(t_lem *d, t_bfs *bf, t_pathset *set)
 			set->seen[set->seen_len++] = d->links[set->cur][i];
 			set->entries[d->links[set->cur][i]][0] = 1;
 			if (!set->first[set->cur])
+			{
 				set->child[set->cur][j++] = d->links[set->cur][i];
+				set->child[set->cur][j] = -1;
+			}
 			else
+			{
 				set->to[set->cur][j++] = d->links[set->cur][i];
+				set->to[set->cur][j] = -1;
+			}
 		}
 		i++;
 	}
@@ -378,19 +395,19 @@ void	update_seen(t_lem *d, t_bfs *bf, t_pathset *set)
 // }
 
 
-void	reverse_path(t_pathset *set, int *arr)
-{
-	int	i;
-	int	j;
+// void	reverse_path(t_pathset *set, int *arr)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	j = 0;
-	while (set->temp[i] != -1)
-		i++;
-	i--;
-	while (i >= 0)
-		arr[j++] = set->temp[i--];
-}
+// 	i = 0;
+// 	j = 0;
+// 	while (set->temp[i] != -1)
+// 		i++;
+// 	i--;
+// 	while (i >= 0)
+// 		arr[j++] = set->temp[i--];
+// }
 
 // int	write_path(t_lem *d, t_pathset *set, int *arr)
 // {
@@ -507,33 +524,33 @@ void	secure_write_path_2(t_lem *d, t_bfs *bf, t_pathset *set)
 	}
 }
 
-void	set_flow(t_pathset *set, t_bfs *bf, t_lem *d)
-{
-	int	i;
-
-	i = 0;
-	set->cur = d->start;
-	bf->flow[set->cur][set->cur_path[i]] = 1;
-	bf->flow[set->cur_path[i]][set->cur] = -1;
-	while (set->cur_path[i] != -1)
-	{
-		set->cur = set->cur_path[i];
-		if (set->cur_path[i + 1] != -1)
-		{
-			if (!bf->flow[set->cur_path[i + 1]][set->cur])
-			{
-				bf->flow[set->cur][set->cur_path[i + 1]] = 1;
-				bf->flow[set->cur_path[i + 1]][set->cur] = -1;
-			}
-			else
-			{
-				bf->flow[set->cur][set->cur_path[i + 1]] = 0;
-				bf->flow[set->cur_path[i + 1]][set->cur] = 0;
-			}
-		}
-		i++;
-	}
-}
+// void	set_flow(t_pathset *set, t_bfs *bf, t_lem *d)
+// {
+// 	int	i;
+// 
+// 	i = 0;
+// 	set->cur = d->start;
+// 	bf->flow[set->cur][set->cur_path[i]] = 1;
+// 	bf->flow[set->cur_path[i]][set->cur] = -1;
+// 	while (set->cur_path[i] != -1)
+// 	{
+// 		set->cur = set->cur_path[i];
+// 		if (set->cur_path[i + 1] != -1)
+// 		{
+// 			if (!bf->flow[set->cur_path[i + 1]][set->cur])
+// 			{
+// 				bf->flow[set->cur][set->cur_path[i + 1]] = 1;
+// 				bf->flow[set->cur_path[i + 1]][set->cur] = -1;
+// 			}
+// 			else
+// 			{
+// 				bf->flow[set->cur][set->cur_path[i + 1]] = 0;
+// 				bf->flow[set->cur_path[i + 1]][set->cur] = 0;
+// 			}
+// 		}
+// 		i++;
+// 	}
+// }
 
 void	path_collector(t_lem *d, t_bfs *bf, t_pathset *set)
 {
@@ -550,6 +567,7 @@ void	path_collector(t_lem *d, t_bfs *bf, t_pathset *set)
 		{
 			set->cur = d->links[d->start][i];
 			set->paths[set->index][set->seen_len++] = set->cur;
+			set->paths[set->index][set->seen_len] = -1;
 			while (set->cur != d->end)
 			{
 				j = 0;
@@ -557,28 +575,12 @@ void	path_collector(t_lem *d, t_bfs *bf, t_pathset *set)
 					j++;
 				if (j == d->room_count)//flow chart failsafe, remove lter
 				{
-					// debug_bfs(d, bf, set);
-					// int q = 0;
-					// while (set->paths[set->index][q] != -1)
-					// 	printf("|%s| -> ", d->rooms[set->paths[set->index][q++]]);
-					// q = 0;
-					// printf("\nBROKEN FLOW^^^^^^^^^^^^\n");
-					// while(set->cur_path[q] != -1)
-					// 	printf("|%s| -> ", d->rooms[set->cur_path[q++]]);
-					// printf("\n");
-					// printf("\nparent: %d  from: %d\n", set->parent[1331], set->from[1331]);
-					// printf("parent: %d  from: %d\n", set->parent[1221], set->from[1221]);
-					// printf("parent: %d  from: %d\n", set->parent[1084], set->from[1084]);
-					// printf("%s parent: %s from: %s\n", d->rooms[1331], d->rooms[set->parent[1331]], d->rooms[set->from[1331]]);
-					// printf("%s parent: %s from: %s\n", d->rooms[1221], d->rooms[set->parent[1221]], d->rooms[set->from[1221]]);
-					// printf("%s parent: %s from: %s\n", d->rooms[1084], d->rooms[set->parent[1084]], d->rooms[set->from[1084]]);
-					// // printf("parent: %d  from: %d\n", set->parent[531], set->from[531]);
-					// printf("\ncur_path ^^^\n");
-					printf("path_collector exit %d cur name: \n", i);
+					printf("path_collector exit %d cur name: \n", i); //
 					exit(0);
 				}
 				set->cur = d->links[set->cur][j];
 				set->paths[set->index][set->seen_len++] = set->cur;
+				set->paths[set->index][set->seen_len] = -1;
 				set->len++;
 			}
 			set->weight[set->index] = set->len;
@@ -642,8 +644,8 @@ int		turn_amount(t_lem *d, t_pathset *set)
 
 	i = 0;
 	ants = d->ants;
-	while (i < d->room_count)
-		set->used[i++] = 0;
+	// while (i < d->room_count)
+	// 	set->used[i++] = 0;
 	while (ants > 0)
 	{
 		place_ant(set);
@@ -1083,29 +1085,29 @@ void	clear_fl_dir(t_lem *d, t_bfs *bf)
 
 void	del_set(t_lem *d, t_pathset *set)
 {
-	int i;
-
-	i = 0;
+	(void)d; //gjjghjggh
 	// exit(0);
 	// printf("mita tapahtuu!!!\n");
-	free(set->cur_path);
 	free(set->parent);
 	free(set->seen);
-	free(set->temp);
 	free(set->used);
 	free(set->from);
 	free(set->first);
-	while (i < d->room_count)
-	{
-		free(set->child[i]);
-		free(set->to[i]);
-		free(set->paths[i]);
-		free(set->entries[i++]);
-	}
-	free(set->paths);
-	free(set->entries);
-	free(set->child);
-	free(set->to);
+	// while (i < d->room_count)
+	// {
+	// 	free(set->child[i]);
+	// 	free(set->to[i]);
+	// 	free(set->paths[i]);
+	// 	free(set->entries[i++]);
+	// }
+	// free(set->paths);
+	// free(set->entries);
+	// free(set->child);
+	// free(set->to);
+	ft_memdelarr((void *)&set->paths);
+	ft_memdelarr((void *)&set->child);
+	ft_memdelarr((void *)&set->entries);
+	ft_memdelarr((void *)&set->to);
 }
 
 void	print_child(t_lem *d, t_pathset *set)
@@ -1150,6 +1152,7 @@ int	bfs(t_lem *d, t_bfs *bf)
 	set = (t_pathset*)malloc(sizeof(t_pathset));
 	init_pathset(d, set);
 	set->cur = d->start;
+	// return (1);
 	set_seen_from_start(d, bf, set);
 	flag++;
 	while (set->cur != d->end)
@@ -1264,7 +1267,8 @@ int	bfs(t_lem *d, t_bfs *bf)
 	// printf("\n\n--------------------\n\n");
 	// printf("\n\n--------------------\n\n");
 	path_collector(d, bf, set);
-	clear_fl_dir(d, bf);
+	// clear_fl_dir(d, bf);
+	ft_memset(bf->fl_dir, -1, sizeof(int) * d->room_count);
 	// printf("mielenterveys tsekki 2 {%d}\n", bf->fl_dir[1175]);
 
 	set_fl_dir(set, bf, d);
@@ -1274,6 +1278,7 @@ int	bfs(t_lem *d, t_bfs *bf)
 	// clear_fl_dir(d, bf);
 	// set_fl_dir(set, bf, d);
 	set->turns = turn_amount(d, set);
+	// set->turns = 1;
 	// add_paths_to_table(d, set);
 	if	(!bf->best || set->turns < bf->best->turns)
 	{
@@ -1303,25 +1308,26 @@ int	bfs(t_lem *d, t_bfs *bf)
 	// 	i++;
 	// 	printf("\n-------------------\n");
 	// }
-	t_room *room;
-	size_t	i = 0;
-	size_t	j = 0;
-	while (set->paths[i][j] != -1)
-	{
-		while (set->paths[i][j] != -1)
-		{
-			room = ft_vecget(&d->rooms, set->paths[i][j]);
-			printf("|%s| ", room->name);
-			j++;
-			if (set->paths[i][j] != -1)
-				printf("-> ");
-		}
-		j = 0;
-		i++;
-		printf("\n-------------------\n");
-	}
+	// t_room *room;
+	// size_t	i = 0;
+	// size_t	j = 0;
+	// while (set->paths[i][j] != -1)
+	// {
+	// 	while (set->paths[i][j] != -1)
+	// 	{
+	// 		room = ft_vecget(&d->rooms, set->paths[i][j]);
+	// 		printf("|%s| ", room->name);
+	// 		j++;
+	// 		if (set->paths[i][j] != -1)
+	// 			printf("-> ");
+	// 	}
+	// 	j = 0;
+	// 	i++;
+	// 	printf("\n-------------------\n");
+	// }
 	// debug_bfs(d, bf, set);
-	printf("  {%d}   room jumps = %d\n", set->turns, end);
+	static int u = 0;
+	printf("  {%d}   room jumps = %d bfs_count %d\n", set->turns, end, u++);
 	
 	// // printf("taalla\n");
 	// print_child(d, set);
