@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/29 17:10:06 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 08:04:34 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	test_links_print(t_lem *d)
 	size_t	i;
 	size_t	j;
 
+	return ;
 	i = 0;
 	j = 0;
 	while (d->links[i])
@@ -48,23 +49,28 @@ static void	test_print(t_lem *d, t_vec *farm)
 	size_t	i;
 	size_t	j;
 
-	write(1, farm->data, farm->len);
-	ft_printf("\n\ngot %d ants.\n\n", d->ants);
+	//write(1, farm->data, farm->len);
+	(void)farm;
+	//ft_printf("\n\ngot %d ants.\n", d->ants);
+	ft_printf("\n");
 	i = 0;
 	while (i < d->rooms.len)
 	{
 		room = ft_vecget(&d->rooms, i);
-		ft_printf("room: %s,\tindex: [%d],\tlinks: ", room->name, room->index);
-		j = 0;
-		while (j < room->links.len)
+		if (room->links.len > 2)
 		{
-			n = ft_vecget(&room->links, j);
-			link = ft_vecget(&d->rooms, *n);
-			ft_printf("%s ", link->name);
-			j++;
+			ft_printf("room: %s,\tindex: [%d],\tlinks: ", room->name, room->index);
+			j = 0;
+			while (j < room->links.len)
+			{
+				n = ft_vecget(&room->links, j);
+				link = ft_vecget(&d->rooms, *n);
+				ft_printf("%s ", link->name);
+				j++;
+			}
+			ft_printf("\n");
 		}
 		i++;
-		ft_printf("\n");
 	}
 	ft_printf("\n");
 }
