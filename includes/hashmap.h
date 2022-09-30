@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:39:04 by atenhune          #+#    #+#             */
-/*   Updated: 2022/09/30 12:39:17 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/09/30 22:30:57 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ typedef struct s_hash
 {
 	char	*room;
 	int		index;
-}		t_hash;
-
+}			t_hash;
 
 unsigned long	hash(char *name);
 int				hash_insert(char *room, int index, t_hash *hash_table);
