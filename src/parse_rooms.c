@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/29 11:46:31 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 07:44:46 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static int	relay_to_links(t_lem *d, t_parser *p)
 	if (lookup_and_insert(d, p) < 0)
 		return (panic(NULL, "Error: Hash table error."));
 	p->state = LINKS;
-	ft_printf("got rooms, next->links\n");//del
 	return (parse_links(d, p));
 }
 
