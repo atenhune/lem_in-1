@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 22:55:03 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 23:17:54 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	save_room(t_lem *d, char *name, int x, int y)
 	room.index = d->rooms.len;
 	room.x = x;
 	room.y = y;
-	if (ft_vecnew(&room.links, 4, sizeof(int)) < 0)
+	if (ft_vecnew(&room.links, 1, sizeof(int)) < 0)
 		return (panic(NULL, "Error: Couldn't initialize room's links"));
 	if (ft_vecpush(&d->rooms, &room) < 0)
 		return (panic(NULL, "Error: Memory issue while saving room."));
