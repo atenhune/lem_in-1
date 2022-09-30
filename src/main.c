@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 08:04:34 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 10:38:27 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,38 @@
 ** iii: solve
 ** iv: print
 */
+
+static void	test_find(t_lem *d, t_vec *farm)
+{
+	t_room	*room;
+	char	**arr;
+	char	*ptr;
+	size_t	i;
+	size_t	j;
+
+	ft_printf("\n");
+	i = 0;
+	while (i < d->rooms.len)
+	{
+		room = ft_vecget(&d->rooms, i);
+		if (room->links.len == 3)
+		{
+			ptr = room->name;
+			arr = ft_strsplit(farm->data, '\n');
+			j = 0;
+			while (arr[j])
+			{
+				if (ft_strchr(arr[j], '-') && ft_strstr(arr[j], ptr))
+					ft_printf("dis: %s\n", arr[j]);
+				j++;
+			}
+			ft_printf("\n");
+		}
+		i++;
+	}
+	ft_strdelarr(&arr);
+	ft_printf("\n");
+}
 
 static void	test_links_print(t_lem *d)
 {
@@ -49,15 +81,15 @@ static void	test_print(t_lem *d, t_vec *farm)
 	size_t	i;
 	size_t	j;
 
-	//write(1, farm->data, farm->len);
 	(void)farm;
+	//write(1, farm->data, farm->len);
 	//ft_printf("\n\ngot %d ants.\n", d->ants);
 	ft_printf("\n");
 	i = 0;
 	while (i < d->rooms.len)
 	{
 		room = ft_vecget(&d->rooms, i);
-		if (room->links.len > 2)
+		if (room->links.len == 3)
 		{
 			ft_printf("room: %s,\tindex: [%d],\tlinks: ", room->name, room->index);
 			j = 0;
@@ -91,8 +123,9 @@ int	main(int argc, char **argv)
 	//* iv: print()
 	test_print(&d, &farm); //debugging
 	test_links_print(&d); //debugging
+	test_find(&d, &farm); //debugging
 	ft_vecdel(&farm); //will be freed in print()
 	free_data(&d);
-	system("leaks -q lem-in");
+	//system("leaks -q lem-in");
 	return (0);
 }
