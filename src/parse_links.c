@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_links.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:14:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/28 09:41:23 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 12:49:02 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	parse_links(t_lem *d, t_parser *p)
 		return (panic(NULL, "Error: Invalid link (2)."));
 	temp = ft_vecget(&d->rooms, from);
 	ft_vecpush(&temp->links, &to);
+	temp = ft_vecget(&d->rooms, to);
+	ft_vecpush(&temp->links, &from);
 	//p->state = DONE;
 	return (1);
 }
