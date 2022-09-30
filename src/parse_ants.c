@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:06:32 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/21 11:08:10 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 07:44:23 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int	parse_ants(t_lem *d, t_parser *p)
 	if (d->ants == 0)
 		return (panic(NULL, "Error: No ants."));
 	p->state = ROOMS;
-	ft_printf("got ants, next->rooms\n");//del
 	return (1);
 }
