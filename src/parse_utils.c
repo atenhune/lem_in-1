@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 08:35:52 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/29 17:10:08 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 22:00:18 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,12 @@ static int	allocate_grid(t_lem *d)
 	return (1);
 }
 
-int	create_links(t_lem *d)
+int	prepare_data(t_lem *d)
 {
 	if (allocate_grid(d) < 0)
 		return (panic(NULL, "Error: Couldn't create links."));
 	populate_grid(d);
+	d->room_count = (int ) d->rooms.len;
 	return (1);
 }
 
