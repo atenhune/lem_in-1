@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 10:38:27 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 12:57:09 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	test_find(t_lem *d, t_vec *farm)
 	size_t	i;
 	size_t	j;
 
+	return ;
 	ft_printf("\n");
 	i = 0;
 	while (i < d->rooms.len)
@@ -81,6 +82,7 @@ static void	test_print(t_lem *d, t_vec *farm)
 	size_t	i;
 	size_t	j;
 
+	return ;
 	(void)farm;
 	//write(1, farm->data, farm->len);
 	//ft_printf("\n\ngot %d ants.\n", d->ants);
@@ -89,19 +91,16 @@ static void	test_print(t_lem *d, t_vec *farm)
 	while (i < d->rooms.len)
 	{
 		room = ft_vecget(&d->rooms, i);
-		if (room->links.len == 3)
+		ft_printf("room: %s,\tindex: [%d],\tlinks: ", room->name, room->index);
+		j = 0;
+		while (j < room->links.len)
 		{
-			ft_printf("room: %s,\tindex: [%d],\tlinks: ", room->name, room->index);
-			j = 0;
-			while (j < room->links.len)
-			{
-				n = ft_vecget(&room->links, j);
-				link = ft_vecget(&d->rooms, *n);
-				ft_printf("%s ", link->name);
-				j++;
-			}
-			ft_printf("\n");
+			n = ft_vecget(&room->links, j);
+			link = ft_vecget(&d->rooms, *n);
+			ft_printf("%s ", link->name);
+			j++;
 		}
+		ft_printf("\n");
 		i++;
 	}
 	ft_printf("\n");
@@ -119,11 +118,15 @@ int	main(int argc, char **argv)
 		return (panic(NULL, "Error: Initializing data failed."));
 	if (parse_data(&d, &farm) < 0)
 		return (panic(&d, "Error: Parsing data failed."));
-	//* iii: solve()
-	//* iv: print()
 	test_print(&d, &farm); //debugging
+	// exit(0);
 	test_links_print(&d); //debugging
 	test_find(&d, &farm); //debugging
+	d.room_count = (int ) d.rooms.len;
+	// printf("%d\n", d.room_count);
+	if (solve(&d) < 0)
+		return (panic(&d, "Error: No solution."));
+	//* iv: print()
 	ft_vecdel(&farm); //will be freed in print()
 	free_data(&d);
 	//system("leaks -q lem-in");
