@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 12:57:09 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/09/30 21:55:20 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,60 +21,7 @@
 ** iv: print
 */
 
-static void	test_find(t_lem *d, t_vec *farm)
-{
-	t_room	*room;
-	char	**arr;
-	char	*ptr;
-	size_t	i;
-	size_t	j;
-
-	return ;
-	ft_printf("\n");
-	i = 0;
-	while (i < d->rooms.len)
-	{
-		room = ft_vecget(&d->rooms, i);
-		if (room->links.len == 3)
-		{
-			ptr = room->name;
-			arr = ft_strsplit(farm->data, '\n');
-			j = 0;
-			while (arr[j])
-			{
-				if (ft_strchr(arr[j], '-') && ft_strstr(arr[j], ptr))
-					ft_printf("dis: %s\n", arr[j]);
-				j++;
-			}
-			ft_printf("\n");
-		}
-		i++;
-	}
-	ft_strdelarr(&arr);
-	ft_printf("\n");
-}
-
-static void	test_links_print(t_lem *d)
-{
-	size_t	i;
-	size_t	j;
-
-	return ;
-	i = 0;
-	j = 0;
-	while (d->links[i])
-	{
-		while (d->links[i][j] != -1)
-		{
-			ft_printf("%d ", d->links[i][j++]);
-		}
-		ft_printf("\n");
-		j = 0;
-		i++;
-	}
-}
-
-static void	test_print(t_lem *d, t_vec *farm)
+static void	test_print(t_lem *d)
 {
 	t_room	*room;
 	t_room	*link;
@@ -83,10 +30,7 @@ static void	test_print(t_lem *d, t_vec *farm)
 	size_t	j;
 
 	return ;
-	(void)farm;
-	//write(1, farm->data, farm->len);
-	//ft_printf("\n\ngot %d ants.\n", d->ants);
-	ft_printf("\n");
+	ft_printf("\n"); //whole function will be removed once print() is done
 	i = 0;
 	while (i < d->rooms.len)
 	{
@@ -118,12 +62,7 @@ int	main(int argc, char **argv)
 		return (panic(NULL, "Error: Initializing data failed."));
 	if (parse_data(&d, &farm) < 0)
 		return (panic(&d, "Error: Parsing data failed."));
-	test_print(&d, &farm); //debugging
-	// exit(0);
-	test_links_print(&d); //debugging
-	test_find(&d, &farm); //debugging
-	d.room_count = (int ) d.rooms.len;
-	// printf("%d\n", d.room_count);
+	test_print(&d); //debugging, remove later
 	if (solve(&d) < 0)
 		return (panic(&d, "Error: No solution."));
 	//* iv: print()
