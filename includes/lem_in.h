@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/29 15:09:25 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 07:46:28 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ typedef enum e_state
 {
 	ANTS,
 	ROOMS,
-	LINKS,
-	DONE
+	LINKS
 }			t_state;
 
 typedef struct s_parser
