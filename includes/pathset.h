@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:52:57 by atenhune          #+#    #+#             */
-/*   Updated: 2022/09/30 14:26:15 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/09/30 18:57:27 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,25 @@
 typedef struct s_pathset
 {
 	int		**paths;
-	int		**entries;
-	int		*cur_path;
 	int		**child;
 	int		**to;
+	int		**entries;
 	int		*seen;
 	int		*first;
-	int		*temp;
 	int		*parent;
 	int		*used;
 	int		*weight;
 	int		*from;
 	int		len;
-	int		count;
-	int		turns;
+	int		count; //jhjghh
+	int		turns; //lhkkhk
 	int		cur;
 	int		flag;
-	int		index;
+	int		index; // seen index
 	int		seen_len;
-	int		state; // 
+	// int		*cur_path;
+	// int		*temp;
+	// int		state; // 
 } t_pathset;
 
 void	zero_pathset(t_lem *d, t_pathset *set);
