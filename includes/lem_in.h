@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 12:38:35 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/09/30 22:20:30 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 # define LEM_IN_H
 
 # include "libft.h"
-# include "data.h"
 # include "hashmap.h"
+# include "data.h"
 # include "pathset.h"
 # include "bfs.h"
 
-////////////////////
-# include <stdio.h>
-////////////////////
+//////////////////////
+# include <stdio.h> // remove me!
+//////////////////////
 
 /*
 **STRUCTIONS FOR THE PROGRAM
@@ -36,16 +36,6 @@ typedef struct s_room
 	t_vec	links;
 	int		index;
 }			t_room;
-
-// typedef struct s_lem
-// {
-// 	int		ants;
-// 	t_vec	rooms;
-// 	int		**links;
-// 	int		room_count; // <------ antti muuttaa!
-// 	int		start;
-// 	int		end;
-// }			t_lem;
 
 /*
 **STRUCTIONS & FUNCTIONS FOR THE PARSER
@@ -64,8 +54,8 @@ typedef struct s_parser
 	char	*line;
 	int		start;
 	int		end;
-	t_state	state;
 	t_hash	table[TABLE_SIZE];
+	t_state	state;
 }			t_parser;
 
 int		parse_ants(t_lem *d, t_parser *p);
@@ -84,7 +74,7 @@ int		init_parser(t_parser *p);
 int		return_next_line(const int fd, char **line, int *ret);
 int		panic_parser(t_parser *p, const char *msg);
 void	free_parser(t_parser *p);
-int		create_links(t_lem *d);
+int		prepare_data(t_lem *d);
 
 /*
 **FUNCTIONS FOR THE PROGRAM
@@ -92,8 +82,8 @@ int		create_links(t_lem *d);
 
 int		init_data(t_lem *d, t_vec *farm);
 int		panic(t_lem *d, const char *msg);
-void	free_data(t_lem *d);
 int		parse_data(t_lem *d, t_vec *farm);
-int 	solve(t_lem *d);
+void	free_data(t_lem *d);
+int		solve(t_lem *d);
 
 #endif
