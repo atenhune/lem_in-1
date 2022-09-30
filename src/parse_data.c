@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 07:43:01 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 12:11:50 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static int	save_commands(t_lem *d, t_parser *p)
 {
 	if (!ft_strncmp(p->line, "##start", 8))
 	{
-		d->start = d->rooms.len + 1;
+		d->start = d->rooms.len;
 		p->start++;
 	}
 	else if (!ft_strncmp(p->line, "##end", 6))
 	{
-		d->end = d->rooms.len + 1;
+		d->end = d->rooms.len;
 		p->end++;
 	}
 	return (1);
