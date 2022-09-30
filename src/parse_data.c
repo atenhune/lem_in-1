@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 12:11:50 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/09/30 22:04:25 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static int	collect_lines(t_parser *p, const char c)
 {
 	if (ft_vecncat(&p->inputs, p->line, ft_strlen(p->line)) < 0)
-		return (-1); //what
+		return (panic(NULL, "Error: Couldn't collect line."));
 	if (ft_vecpush(&p->inputs, &c) < 0)
-		return (-1); //what
+		return (panic(NULL, "Error: Couldn't save line."));
 	ft_strdel(&p->line);
 	return (1);
 }
@@ -38,13 +38,13 @@ static int	save_commands(t_lem *d, t_parser *p)
 }
 
 /*
-** STRUCTURE !write better
+** STRUCTURE
 ** i: ants
 ** ii: rooms
 ** iii: links
 */
 
-int	parse_data(t_lem *d, t_vec *farm)
+int	parse_data(t_lem *d, t_vec *farm) //^write description
 {
 	t_parser	p;
 	int			ret;
@@ -65,7 +65,7 @@ int	parse_data(t_lem *d, t_vec *farm)
 		if (collect_lines(&p, '\n') < 0)
 			return (panic_parser(&p, "Error: Memory issue collecting lines."));
 	}
-	if (create_links(d) < 0)
+	if (prepare_data(d) < 0)
 		return (panic_parser(&p, "Error: Memory issue creating links."));
 	if (ft_vecappend(farm, &p.inputs) < 0)
 		return (panic_parser(&p, "Error: Memory issue saving farm."));
