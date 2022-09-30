@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 07:44:46 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 22:55:03 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static int	save_room(t_lem *d, char *name, int x, int y)
 	room.index = d->rooms.len;
 	room.x = x;
 	room.y = y;
-	ft_vecnew(&room.links, 4, sizeof(int)); //antti explains this wasting
+	if (ft_vecnew(&room.links, 4, sizeof(int)) < 0)
+		return (panic(NULL, "Error: Couldn't initialize room's links"));
 	if (ft_vecpush(&d->rooms, &room) < 0)
 		return (panic(NULL, "Error: Memory issue while saving room."));
 	return (1);
@@ -58,7 +59,7 @@ static int	validate_room(t_parser *p, char **room)
 ** v: jump to parse_links
 */
 
-static int	lookup_and_insert(t_lem *d, t_parser *p)
+static int	lookup_and_insert(t_lem *d, t_parser *p) //^not plan but descr.
 {
 	t_room	*temp;
 	size_t	i;
@@ -98,7 +99,7 @@ static int	relay_to_links(t_lem *d, t_parser *p)
 ** vi: clean up
 */
 
-int	parse_rooms(t_lem *d, t_parser *p)
+int	parse_rooms(t_lem *d, t_parser *p) //^not plan but descr.
 {
 	char	**room;
 
