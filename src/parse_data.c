@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/29 15:08:38 by altikka          ###   ########.fr       */
+/*   Updated: 2022/09/30 07:43:01 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	parse_data(t_lem *d, t_vec *farm)
 
 	if (init_parser(&p) < 0)
 		return (panic(NULL, "Error: Initializing parser failed."));
-	while (return_next_line(0, &p.line, &ret) && p.state != DONE) //del DONE
+	while (return_next_line(0, &p.line, &ret))
 	{
 		if (ret == -1)
 			return (panic_parser(&p, "Error: GNL issue."));
@@ -65,12 +65,10 @@ int	parse_data(t_lem *d, t_vec *farm)
 		if (collect_lines(&p, '\n') < 0)
 			return (panic_parser(&p, "Error: Memory issue collecting lines."));
 	}
-	ft_printf("got links, DONE\n");//del
 	if (create_links(d) < 0)
 		return (panic_parser(&p, "Error: Memory issue creating links."));
 	if (ft_vecappend(farm, &p.inputs) < 0)
 		return (panic_parser(&p, "Error: Memory issue saving farm."));
 	free_parser(&p);
-	ft_printf("done with parsing.\n\n");//del
 	return (1);
 }
