@@ -24,19 +24,28 @@ do
 	RESULT=( `./lem-in <  maps/superposition/temp.map | grep ">>>>" | cut -f2 -d " "` )
 	
 	COLOR=${EOC}
-	MAP=""
+	DIFF=""
+	MSG=""
 	if [ $RESULT -lt $EXPECTED ]
 	then
 		COLOR=${GREEN}
+		DIFF=$(($EXPECTED - $RESULT))
+		if [ $DIFF -gt 2 ]
+		then
+			mkdir -p maps/trace_maps/
+			cp maps/superposition/temp.map maps/trace_maps/sus_${I}__${DIFF}.map
+			MSG="\t-${DIFF} >\tsus_${I}__${DIFF}.map"
+		fi
 	elif [ $EXPECTED -lt $RESULT ]
 	then
-		mkdir -p maps/trace_maps/
-		cp maps/superposition/temp.map maps/trace_maps/trace_${I}.map
 		COLOR=${RED}
-		MAP="\t--> trace_${I}.map"
+		DIFF=$(($RESULT - $EXPECTED))
+		mkdir -p maps/trace_maps/
+		cp maps/superposition/temp.map maps/trace_maps/trace_${I}__${DIFF}.map
+		MSG="\t-->\ttrace_${I}__${DIFF}.map"
 	fi
 
-	printf "Expected: $EXPECTED | Result: ${COLOR}$RESULT${EOC}${MAP}\n"
+	printf "Expected: $EXPECTED | Result: ${COLOR}$RESULT${EOC}${MSG}\n"
 
 	rm -fr maps/superposition/temp.map
 	I=$((I + 1))
