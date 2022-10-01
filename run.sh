@@ -33,8 +33,8 @@ do
 		if [ $DIFF -gt 2 ]
 		then
 			mkdir -p maps/trace_maps/
-			cp maps/superposition/temp.map maps/trace_maps/sus_${I}__${DIFF}.map
-			MSG="\t-${DIFF} >\tsus_${I}__${DIFF}.map"
+			cp maps/superposition/temp.map maps/trace_maps/under_${I}__${DIFF}.map
+			MSG="\t-${DIFF} -->\tunder_${I}__${DIFF}.map"
 		fi
 	elif [ $EXPECTED -lt $RESULT ]
 	then
@@ -42,11 +42,12 @@ do
 		DIFF=$(($RESULT - $EXPECTED))
 		mkdir -p maps/trace_maps/
 		cp maps/superposition/temp.map maps/trace_maps/trace_${I}__${DIFF}.map
-		MSG="\t-->\ttrace_${I}__${DIFF}.map"
+		MSG="\t+${DIFF} -->\ttrace_${I}__${DIFF}.map"
 	fi
 
 	printf "Expected: $EXPECTED | Result: ${COLOR}$RESULT${EOC}${MSG}\n"
 
 	rm -fr maps/superposition/temp.map
 	I=$((I + 1))
+	sleep 1
 done
