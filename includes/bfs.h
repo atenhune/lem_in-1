@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:51:41 by atenhune          #+#    #+#             */
-/*   Updated: 2022/09/30 22:27:15 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/01 15:57:35 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	clear_fl_dir(t_lem *d, t_bfs *bf);
 int		turn_amount(t_lem *d, t_pathset *set);
 void	place_ant(t_pathset *set);
 int		last_ant(t_pathset *set);
+
+// bfs retry
+
+void	double_check_paths(t_lem *d, t_bfs *bf);
 
 
 // old backtracking
