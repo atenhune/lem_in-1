@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:23:31 by antti             #+#    #+#             */
-/*   Updated: 2022/10/01 00:09:30 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/01 17:53:13 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1163,124 +1163,18 @@ int	bfs(t_lem *d, t_bfs *bf)
 		}
 		end++;
 		set->cur = set->seen[set->index];
-		// add_to_queue(d, bf, set);
-		// set_parents(d, bf, set);
 		update_seen(d, bf, set);
 		// debug_bfs(d, bf, set);
 		// if (flag == 1)
-		// {
-		// 	// printf("%s \n", d->rooms[set->child[10][0]]);
-		// 	// print_child(d, set);
-		// 	exit(0);
-		// }
-			// if (flag == 3 && set->cur == 1175)
-			// {
-				// static int	flag2 = 0;
-			// 	t_room *temp;
-			// 	flag2++;
-			// 	// int r = 0;
-			// 	// while(set->seen[r] != -1)
-			// 	// 	printf("[%s] ", d->rooms[set->seen[r++]]);
-			// 	// printf("\n");
-			// 	if (flag2 == 1)
-			// 	{
-			// 		// printf("1st added to seen: %s %s %s\n", d->rooms[set->seen[set->seen_len - 1]], d->rooms[set->seen[set->seen_len - 2]], d->rooms[set->seen[set->seen_len - 3]]);
-			// 		temp = ft_vecget(&d->rooms, set->parent[1175]);
-			// 		printf("parent: %s\n", temp->name);
-			// 		temp = ft_vecget(&d->rooms, set->from[1175]);
-			// 		printf("from: %s\n", temp->name);
-			// 		printf("%d %d %d %d\n", set->child[1175][0], set->child[1175][1], set->child[1175][2], set->child[1175][3]);
-			// 		printf("%d %d %d %d\n", set->to[1175][0], set->to[1175][1], set->to[1175][2], set->to[1175][3]);
-			// 		printf("seen: %d %d %d\n", set->seen[set->seen_len - 1], set->seen[set->seen_len - 2], set->seen[set->seen_len - 3]);
-			// 		printf("1149 entries[%d][%d]\n", set->entries[1149][0], set->entries[1149][1]);
-			// 		size_t r=0;
-			// 		while (set->seen[r] != -1)
-			// 		{
-			// 			temp = ft_vecget(&d->rooms, set->seen[r]);
-			// 			printf("%s ", temp->name);
-			// 			r++;
-			// 		}
-			// 		printf("\n");
-			// 		// exit(0);
-			// 	}
-			// 	if (flag2 == 2)
-			// 	{
-			// 		// printf("2nd added to seen: %s\n", d->rooms[set->seen[set->seen_len - 1]]);
-			// 		temp = ft_vecget(&d->rooms, set->parent[1175]);
-			// 		printf("parent: %s\n", temp->name);
-			// 		temp = ft_vecget(&d->rooms, set->from[1175]);
-			// 		printf("from: %s\n", temp->name);
-			// 		printf("%d %d %d %d\n", set->child[1175][0], set->child[1175][1], set->child[1175][2], set->child[1175][3]);
-			// 		printf("%d %d %d %d\n", set->to[1175][0], set->to[1175][1], set->to[1175][2], set->to[1175][3]);
-			// 		printf("seen: %d %d %d\n", set->seen[set->seen_len - 1], set->seen[set->seen_len - 2], set->seen[set->seen_len - 3]);
-			// 	}
-			// 	if(flag2 == 2)
-			// 		exit(0);
-			// }
+			// exit(0);
 	}
-	// printf("Hs_7: %d %d %d %d\n", set->child[1146][0], set->child[1146][1], set->child[1146][2], set->child[1146][3]);
-	// printf("Hxu2: %d %d %d %d\n", set->child[1175][0], set->child[1175][1], set->child[1175][2], set->child[1175][3]);
-
-	// {
-	// 	int qwer = 0;
-	// 	while (set->seen[qwer] != -1)
-	// 		printf("%d ", set->seen[qwer++]);
-
-	// 	exit(0);
-	// }
-	// write_path(d, set, set->cur_path);
-	// printf("%2d -> %s <- %2d fl_dir:[%d]\n", bf->flow[1214][1175], d->rooms[1214], bf->flow[1175][1214], bf->fl_dir[1175]);
-	// printf("%2d -> %s <- %2d fl_dir:[%d]\n", bf->flow[1257][1175], d->rooms[1257], bf->flow[1175][1257], bf->fl_dir[1175]);
-	// printf("%2d -> %s <- %2d fl_dir:[%d]\n", bf->flow[1149][1175], d->rooms[1149], bf->flow[1175][1149], bf->fl_dir[1175]);
-	// printf("%2d -> %s <- %2d fl_dir:[%d]\n", bf->flow[1176][1175], d->rooms[1176], bf->flow[1175][1176], bf->fl_dir[1175]);
-	// printf("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
-
-	// secure_write_path(d, set, set->cur_path); //<-----
-	// set_flow(set, bf, d); // <-------
-
 	secure_write_path_2(d, bf, set);
-		// int q = 0;
-		// while (set->cur_path[q] != -1)
-		// 	printf("|%s| -> ", d->rooms[set->cur_path[q++]]);
-		// printf("\ncur_path ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n");
-		// 	if (flag == 8)
-		// 	{
-		// 		exit(0);
-		// 	}
-	// if (flag == 1)
-	// 	exit(0);
-	// printf("mielenterveys tsekki:\n {%d}", bf->fl_dir[1175]);
-	// if(bf->fl_dir[1175] != -1)
-	// 	printf("\nfrom: %s", d->rooms[bf->fl_dir[1175]]);
-	// else
-	// printf("%2d -> %s <- %2d fl_dir:[%d]\n", bf->flow[1214][1175], d->rooms[1214], bf->flow[1175][1214], bf->fl_dir[1175]);
-	// printf("%2d -> %s <- %2d fl_dir:[%d]\n", bf->flow[1257][1175], d->rooms[1257], bf->flow[1175][1257], bf->fl_dir[1175]);
-	// printf("%2d -> %s <- %2d fl_dir:[%d]\n", bf->flow[1149][1175], d->rooms[1149], bf->flow[1175][1149], bf->fl_dir[1175]);
-	// printf("%2d -> %s <- %2d fl_dir:[%d]\n", bf->flow[1176][1175], d->rooms[1176], bf->flow[1175][1176], bf->fl_dir[1175]);
-	// printf("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
-
-
-	// printf("%2d -> %s -> %2d fl_dir:[%d]\n", bf->flow[1214][1175], d->rooms[1214], bf->flow[1175][1214], bf->fl_dir[1175]);
-	// printf("%2d -> %s -> %2d fl_dir:[%d]\n", bf->flow[1257][1175], d->rooms[1257], bf->flow[1175][1257], bf->fl_dir[1175]);
-	// printf("%2d -> %s -> %2d fl_dir:[%d]\n", bf->flow[1149][1175], d->rooms[1149], bf->flow[1175][1149], bf->fl_dir[1175]);
-	// printf("%2d -> %s -> %2d fl_dir:[%d]\n", bf->flow[1176][1175], d->rooms[1176], bf->flow[1175][1176], bf->fl_dir[1175]);
-	// printf("\n\n--------------------\n\n");
-	// printf("\n\n--------------------\n\n");
 	path_collector(d, bf, set);
 	// clear_fl_dir(d, bf);
 	ft_memset(bf->fl_dir, -1, sizeof(int) * d->room_count);
-	// printf("mielenterveys tsekki 2 {%d}\n", bf->fl_dir[1175]);
-
 	set_fl_dir(set, bf, d);
-	// double_check_paths(d, bf, set);
-	// clear_paths(set, d);
-	// path_collector(d, bf, set);
-	// clear_fl_dir(d, bf);
-	// set_fl_dir(set, bf, d);
 	set->turns = turn_amount(d, set);
-	// set->turns = 1;
-	// add_paths_to_table(d, set);
-	if	(!bf->best || set->turns < bf->best->turns)
+	if	(!bf->best || set->turns <= bf->best->turns)
 	{
 		// if (bf->best)
 			// del_set(d, bf->best);
@@ -1288,26 +1182,7 @@ int	bfs(t_lem *d, t_bfs *bf)
 	}
 	// else
 	// 	del_set(d, &set);
-		//del set
-	// printf("%d \n", bf->best->turns);
-	// exit(0);
-
 	
-	// int	i = 0;
-	// int	j = 0;
-	// while (set->paths[i][j] != -1)
-	// {
-	// 	while (set->paths[i][j] != -1)
-	// 	{
-	// 		printf("|%s| ", d->rooms[set->paths[i][j]]);
-	// 		if (set->paths[i][j] != -1)
-	// 			printf("-> ");
-	// 		j++;
-	// 	}
-	// 	j = 0;
-	// 	i++;
-	// 	printf("\n-------------------\n");
-	// }
 	// t_room *room;
 	// size_t	i = 0;
 	// size_t	j = 0;
@@ -1329,8 +1204,6 @@ int	bfs(t_lem *d, t_bfs *bf)
 	//static int u = 0;
 	//printf("  {%d}   room jumps = %d bfs_count %d\n", set->turns, end, u++);
 	
-	// // printf("taalla\n");
-	// print_child(d, set);
 	// // exit(0);
 	// printf("\n\n#####################\n\n");
 	// exit(0);
