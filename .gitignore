@@ -60,3 +60,4 @@ dkms.conf
 .vscode/
 *lem-in
 *output*
+/maps/trace_maps/*
