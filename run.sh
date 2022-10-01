@@ -9,10 +9,10 @@ EOC=$(tput sgr0)
 if [ "$1" == "" ] || [ "$#" -ne 1 ] || [[ ! $1 =~ ^-?[[:digit:]]+$ ]]
 then
 	printf "\nusage: ./run.sh [number]\n
-	e.g. '${YELLOW}./run.sh 50${EOC}' will run the script 50 times w/ big-superposition maps.
-	hand-picked maps will be saved in maps/trace_maps/ directory.
-	results better than expected will be highligthed in ${GREEN}green${EOC},
-	results worse than will be shown in ${RED}red${EOC}.\n\n"
+	e.g. '${YELLOW}./run.sh 50${EOC}' will run the script 50 times on big-superposition maps.
+	selected maps will be saved in maps/trace_maps/ directory.
+	results better than expected will be shown in ${GREEN}green${EOC},
+	results worse than will be highlighted in ${RED}red${EOC}.\n\n"
 	exit
 fi
 
