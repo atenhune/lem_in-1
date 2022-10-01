@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:23:31 by antti             #+#    #+#             */
-/*   Updated: 2022/09/30 19:14:27 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/01 00:09:30 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	is_next(t_pathset *set, t_bfs *bf, t_lem *d)
 			return (1);
 		}
 	}
-	printf("bfs DONE.\n");
+	//printf("bfs DONE.\n");
 	// int temp = 0;
 	// while (temp < 16)
 	// 	printf("[%d] ", set->seen[temp++]);
@@ -1326,8 +1326,8 @@ int	bfs(t_lem *d, t_bfs *bf)
 	// 	printf("\n-------------------\n");
 	// }
 	// debug_bfs(d, bf, set);
-	static int u = 0;
-	printf("  {%d}   room jumps = %d bfs_count %d\n", set->turns, end, u++);
+	//static int u = 0;
+	//printf("  {%d}   room jumps = %d bfs_count %d\n", set->turns, end, u++);
 	
 	// // printf("taalla\n");
 	// print_child(d, set);

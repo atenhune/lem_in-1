@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:55:18 by atenhune          #+#    #+#             */
-/*   Updated: 2022/09/30 19:35:41 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/09/30 23:06:23 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,23 @@ int solve(t_lem *d)
 		temp++;
 	// double_check_paths(d, bf);
 	// printf("\nSECOND BFS:\n");
-	size_t	i = 0;
-	size_t	j = 0;
-	t_room 		*room;
-	while (bf.best->paths[i][j] != -1)
-	{
-		while (bf.best->paths[i][j] != -1)
-		{
-			room = ft_vecget(&d->rooms, bf.best->paths[i][j]);
-			printf("|%s| ", room->name);
-			j++;
-			// if (bf.best->paths[i][j] != -1)
-				// printf("-> ");
-		}
-		j = 0;
-		i++;
+	//size_t	i = 0;
+	//size_t	j = 0;
+	//t_room 		*room;
+	//while (bf.best->paths[i][j] != -1)
+	//{
+	//	while (bf.best->paths[i][j] != -1)
+	//	{
+	//		room = ft_vecget(&d->rooms, bf.best->paths[i][j]);
+	//		printf("|%s| ", room->name);
+	//		j++;
+	//		// if (bf.best->paths[i][j] != -1)
+	//			// printf("-> ");
+	//	}
+	//	j = 0;
+	//	i++;
 		// printf("\n-------------------\n");
-	}
+	//}
 	// debug_bfs(d, bf, set);
 	printf(">>>> %d <<<<\n", bf.best->turns);
 	// printf(">>>> %d <<<<\n", bf->best->paths[2][0]);
