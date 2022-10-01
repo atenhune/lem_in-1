@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/09/30 11:14:08 by atenhune         ###   ########.fr        #
+#    Updated: 2022/10/01 12:45:32 by atenhune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)hash.c \
 	   $(SRC_DIR)solve.c \
 	   $(SRC_DIR)bfs.c \
+	   $(SRC_DIR)bfs_retry.c \
 	   $(SRC_DIR)parse_links.c
 
 OBJ_DIR = obj/
