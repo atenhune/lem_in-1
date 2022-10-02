@@ -86,7 +86,7 @@ do
 
 	rm -fr maps/trace_maps/temp.map
 	I=$((I + 1))
-	sleep 0.3
+	sleep 0.4
 done
 
 printf "DONE\n\n"
@@ -98,7 +98,7 @@ if [ $UNDER -gt 0 ]
 then
 	U_AVR=$(echo "$U_RES/$UNDER" | bc -l)
 	printf "  avarage: +"
-	printf %.1f $U_AVR
+	printf %.2f $U_AVR
 	printf " | best: ${WIN}\n"
 fi
 
@@ -107,7 +107,7 @@ if [ $OVER -gt 0 ]
 then
 	O_AVR=$(echo "$O_RES/$OVER" | bc -l)
 	printf "  avarage: -"
-	printf %.1f $O_AVR
+	printf %.2f $O_AVR
 	printf " | worst: ${LOSS}\n"
 fi
 echo "______________________________________________"
