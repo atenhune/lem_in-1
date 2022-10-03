@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 21:55:20 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/03 13:45:10 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	test_print(t_lem *d)
 int	main(int argc, char **argv)
 {
 	t_lem	d;
+	t_bfs	bf;
 	t_vec	farm;
 
 	//* +: -q etc
@@ -63,10 +64,12 @@ int	main(int argc, char **argv)
 	if (parse_data(&d, &farm) < 0)
 		return (panic(&d, "Error: Parsing data failed."));
 	test_print(&d); //debugging, remove later
-	if (solve(&d) < 0)
+	if (solve(&d, &bf) < 0)
 		return (panic(&d, "Error: No solution."));
-	//* iv: print()
-	ft_vecdel(&farm); //will be freed in print()
+	// remember to free bfs
+	if (print(&d, &bf, &farm) < 0)
+		return (panic(&d, "Error: Failed to print."));
+	// ft_vecdel(&farm); //will be freed in print()
 	free_data(&d);
 	//system("leaks -q lem-in");
 	return (0);
