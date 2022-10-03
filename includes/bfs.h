@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:51:41 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/01 15:57:35 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:31:55 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_bfs
 void	debug_bfs(t_lem *d, t_bfs *bf, t_pathset *set);
 void	print_child(t_lem *d, t_pathset *set);
 
+int		init_bfs(t_lem *d, t_bfs *bfs);
 int		bfs(t_lem *d, t_bfs *bf);
 void	set_seen_from_start(t_lem *d, t_bfs *bf, t_pathset *set);
 int		is_next(t_pathset *set, t_bfs *bf, t_lem *d);
