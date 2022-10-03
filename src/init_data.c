@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:56:51 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/03 17:08:22 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/03 23:41:26 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	init_bfs(t_lem *d, t_bfs *bfs)
 {
 	int	i;
 
+	ft_bzero(bfs, sizeof(*bfs));
 	bfs->best = NULL;
 	bfs->fl_dir = malloc(sizeof(int) * d->room_count);
 	if (!bfs->fl_dir)
