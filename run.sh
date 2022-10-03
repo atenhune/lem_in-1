@@ -9,10 +9,10 @@ EOC=$(tput sgr0)
 if [ "$1" == "" ] || [ "$#" -ne 1 ] || [[ ! $1 =~ ^-?[[:digit:]]+$ ]]
 then
 	printf "\nusage: ./run.sh [number]\n
-	E.g. '${YELLOW}./run.sh 50${EOC}' will run the script 50 times on big-superposition maps.
+	E.g. '${YELLOW}./run.sh 20${EOC}' will run the script 20 times on big-superposition maps.
 	Selected maps will be saved in maps/trace_maps/ directory.
 	Results better than expected will be shown in ${GREEN}green${EOC},
-	and results worse than will be highlighted in ${RED}red${EOC}.\n\n"
+	and results worse/slower than will be highlighted in ${RED}red${EOC}.\n\n"
 	exit
 fi
 
@@ -28,12 +28,16 @@ declare -i U_RES=0
 declare -i OVER=0
 declare -i O_RES=0
 declare -i EQUAL=0
+declare -i SLOW=0
 declare -i W=0
 declare -i L=0
 declare -i I=0
 
 WIN="-"
 LOSS="-"
+T="0.000"
+SLOWEST="0.000"
+FASTEST="100.0"
 
 printf "\nTesting $1 big-superposition maps.\n\n"
 
@@ -42,12 +46,22 @@ do
 	mkdir -p maps/trace_maps/
 	./maps/generator --big-superposition > maps/trace_maps/temp.map
 	EXPECTED=( `grep "required: " maps/trace_maps/temp.map | cut -f8 -d " " | head -1` )
-	RESULT=( `./lem-in <  maps/trace_maps/temp.map | grep ">>>>" | cut -f2 -d " "` )
+	(time ./lem-in <  maps/trace_maps/temp.map) > maps/trace_maps/temp_res.txt 2> maps/trace_maps/temp_time.txt
+	RESULT=( `grep ">>>>" maps/trace_maps/temp_res.txt | cut -f2 -d " "` )
+	if [ "$RESULT" == "" ]
+	then
+		printf "ERROR:\tPlease make sure your lem-in outputs the result\n\tformated as: '${YELLOW}>>>> [number of lines] <<<<${EOC}' followed by a newline.\n\n"
+		rm -fr maps/trace_maps/
+		exit
+	fi
+	S_TIME=( `grep "user" maps/trace_maps/temp_time.txt | cut -f2 -d "m"` )
+	F_TIME=( `echo $S_TIME | grep -Eo "[+-]?[0-9]+([.][0-9]+)?"` )
 	
 	COLOR=${EOC}
-
+	T_COLOR=${EOC}
 	DIFF=""
 	MSG=""
+
 	if [ $RESULT -lt $EXPECTED ]
 	then
 		COLOR=${GREEN}
@@ -57,7 +71,7 @@ do
 		if [ $DIFF -gt 2 ]
 		then
 			cp maps/trace_maps/temp.map maps/trace_maps/under_${I}_\(${DIFF}\).map
-			MSG="  +${DIFF}  ->  under_${I}_(${DIFF}).map"
+			MSG="  +${DIFF} -> under_${I}_(${DIFF}).map"
 		fi
 		if [ $DIFF -gt $W ] && [ $DIFF -gt 2 ]
 		then
@@ -71,7 +85,7 @@ do
 		OVER=$((OVER + 1))
 		O_RES=$((O_RES + DIFF))
 		cp maps/trace_maps/temp.map maps/trace_maps/over_${I}_\(${DIFF}\).map
-		MSG="  -${DIFF}  ->  over_${I}_(${DIFF}).map"
+		MSG="  -${DIFF} -> over_${I}_(${DIFF}).map"
 		if [ $DIFF -gt $L ]
 		then
 			L=$DIFF
@@ -81,10 +95,31 @@ do
 		EQUAL=$((EQUAL + 1))
 	fi
 
+	if [ $(echo "$F_TIME > 2.999" | bc -l) -eq 1 ]
+	then
+		T_COLOR=${RED}
+		SLOW=$((SLOW + 1))
+		cp maps/trace_maps/temp.map maps/trace_maps/time_${I}_\(${F_TIME}\).map
+		MSG="  <t> -> time_${I}_(${F_TIME}).map"
+	fi
+	if [ $(echo "$F_TIME > $SLOWEST" | bc -l) -eq 1 ]
+	then
+		SLOWEST=$F_TIME
+	fi
+	if [ $(echo "$F_TIME < $FASTEST" | bc -l) -eq 1 ]
+	then
+		FASTEST=$F_TIME
+	fi
+	T=$(echo "$T+$F_TIME" | bc -l)
+
 	printf "Expected: %3s" $EXPECTED
-	printf " | Result: ${COLOR}%3s${EOC}${MSG}\n" $RESULT
+	printf " | Result: ${COLOR}%3s${EOC}" $RESULT
+	printf " | Time: ${T_COLOR}%.2f${EOC}s${MSG}\n" $F_TIME
 
 	rm -fr maps/trace_maps/temp.map
+	rm -fr maps/trace_maps/temp_res.txt
+	rm -fr maps/trace_maps/temp_time.txt
+
 	I=$((I + 1))
 	sleep 0.4
 done
@@ -110,8 +145,21 @@ then
 	printf %.2f $O_AVR
 	printf " | worst: ${LOSS}\n"
 fi
+
+printf "Time:\n  avarage: "
+T_AVR=$(echo "$T/$1" | bc -l)
+T_AVR_COLOR=$EOC
+if [ $(echo "$SLOWEST > 2.999" | bc -l) -eq 1 ]
+then
+	T_AVR_COLOR=$RED
+fi
+printf %.2f $T_AVR
+printf "s | saved ($SLOW) slower maps.\n" 
+printf "  fastest: %.2f" $FASTEST
+printf "s | slowest: ${T_AVR_COLOR}%.2f${EOC}s\n" $SLOWEST
 echo "______________________________________________"
-printf "\nDo you wish to remove saved maps? (yes/no)${YELLOW}\n"
+
+printf "\nDo you wish to remove saved files? (yes/no)${YELLOW}\n"
 read remove_trace
 printf "${EOC}"
 if [ "$remove_trace" == "yes" ]
