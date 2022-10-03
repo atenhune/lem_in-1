@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:23:31 by antti             #+#    #+#             */
-/*   Updated: 2022/10/01 17:53:13 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:27:05 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -602,7 +602,7 @@ void	place_ant(t_pathset *set)
 
 	i = 0;
 	j = 0;
-	temp = 214748364;
+	temp = 2147483647;
 	while (set->weight[i] != -1)
 	{
 		if (set->weight[i] < temp)
