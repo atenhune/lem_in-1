@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 22:20:30 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/03 14:20:27 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "data.h"
 # include "pathset.h"
 # include "bfs.h"
+# include "print.h"
 
 //////////////////////
 # include <stdio.h> // remove me!
@@ -84,6 +85,7 @@ int		init_data(t_lem *d, t_vec *farm);
 int		panic(t_lem *d, const char *msg);
 int		parse_data(t_lem *d, t_vec *farm);
 void	free_data(t_lem *d);
-int		solve(t_lem *d);
+int		solve(t_lem *d, t_bfs *bf);
+int		print(t_lem *d, t_bfs *bf, t_vec *farm);
 
 #endif
