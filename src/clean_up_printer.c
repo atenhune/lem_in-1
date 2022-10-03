@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:18:54 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/03 16:21:31 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/04 00:21:19 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	free_printer(t_printer *p)
 		ft_vecdel(&p->result);
 	if (p->ant_line)
 		free(p->ant_line);
+	if (p->ants_on_paths)
+		ft_memdelarr((void *)&p->ants_on_paths);
 }
 
 int	panic_printer(t_printer *p, const char *msg)
