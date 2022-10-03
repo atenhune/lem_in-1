@@ -28,6 +28,7 @@ declare -i U_RES=0
 declare -i OVER=0
 declare -i O_RES=0
 declare -i EQUAL=0
+declare -i SLOW=0
 declare -i W=0
 declare -i L=0
 declare -i I=0
@@ -36,6 +37,7 @@ WIN="-"
 LOSS="-"
 T="0.000"
 SLOWEST="0.000"
+FASTEST="100.0"
 
 printf "\nTesting $1 big-superposition maps.\n\n"
 
@@ -52,7 +54,7 @@ do
 		rm -fr maps/trace_maps/
 		exit
 	fi
-	S_TIME=( `grep "real" maps/trace_maps/temp_time.txt | cut -f2 -d "m"` )
+	S_TIME=( `grep "user" maps/trace_maps/temp_time.txt | cut -f2 -d "m"` )
 	F_TIME=( `echo $S_TIME | grep -Eo "[+-]?[0-9]+([.][0-9]+)?"` )
 	
 	COLOR=${EOC}
@@ -96,12 +98,17 @@ do
 	if [ $(echo "$F_TIME > 2.999" | bc -l) -eq 1 ]
 	then
 		T_COLOR=${RED}
+		SLOW=$((SLOW + 1))
 		cp maps/trace_maps/temp.map maps/trace_maps/time_${I}_\(${F_TIME}\).map
 		MSG="  <t> -> time_${I}_(${F_TIME}).map"
 	fi
 	if [ $(echo "$F_TIME > $SLOWEST" | bc -l) -eq 1 ]
 	then
 		SLOWEST=$F_TIME
+	fi
+	if [ $(echo "$F_TIME < $FASTEST" | bc -l) -eq 1 ]
+	then
+		FASTEST=$F_TIME
 	fi
 	T=$(echo "$T+$F_TIME" | bc -l)
 
@@ -147,6 +154,8 @@ then
 	T_AVR_COLOR=$RED
 fi
 printf %.2f $T_AVR
+printf "s | saved ($SLOW) slower maps.\n" 
+printf "  fastest: ${GREEN}%.2f${EOC}" $FASTEST
 printf "s | slowest: ${T_AVR_COLOR}%.2f${EOC}s\n" $SLOWEST
 echo "______________________________________________"
 
