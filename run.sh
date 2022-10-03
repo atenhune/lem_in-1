@@ -121,7 +121,7 @@ do
 	rm -fr maps/trace_maps/temp_time.txt
 
 	I=$((I + 1))
-	sleep 0.4
+	sleep 0.7
 done
 
 printf "DONE\n\n"
