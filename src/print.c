@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/03 20:13:51 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/03 23:46:12 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 // 	}
 // 	return (ret);
 // }
-
 
 static int	save_instruction(t_lem *d, t_printer *p, int ant_nbr, int r_index)
 {
@@ -50,7 +49,6 @@ static int	save_instruction(t_lem *d, t_printer *p, int ant_nbr, int r_index)
 		p->done++;
 	return (1);
 }
-
 
 static int	collect_turn(t_lem *d, t_bfs *bf, t_printer *p)
 {
@@ -115,12 +113,11 @@ static void	push_ants(t_bfs *bf, t_printer *p)
 	}
 }
 
-
 static int	place_ants_on_paths(t_lem *d, t_bfs *bf, t_printer *p)
 {
 	if (ft_vecpush(&p->result, "\n") < 0)
 		return (-1); ///dgfhmgfdsfg
-	while(d->ants != p->done)
+	while (d->ants != p->done)
 	{
 		push_ants(bf, p);
 		go_ants_go(bf, p);
@@ -153,7 +150,6 @@ static void	place_ants_in_line(t_lem *d, t_bfs *bf, t_printer *p)
 		}
 		i = 0;
 	}
-
 }
 
 static int	path_len(int *path)
@@ -200,6 +196,7 @@ static int	init_printer(t_bfs *bf, t_printer *p)
 {
 	int	i;
 
+	ft_bzero(p, sizeof(*p));
 	if (ft_vecnew(&p->result, 5, sizeof(char)) < 0)
 		return (panic(NULL, "Error: Couldn't initialize result."));
 	p->ant_line = ft_memalloc(sizeof(int) * bf->best->count);
@@ -224,6 +221,8 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 {
 	t_printer	p;
 
+	ft_printf(">>>> %d <<<<\n", bf->best->turns);
+	return (1);
 	(void)d;
 	write(1, farm->data, farm->len);
 	ft_vecdel(farm);
