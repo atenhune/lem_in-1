@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:14:15 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/03 19:56:24 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/04 18:25:15 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct s_printer
 	t_vec	result;
 	int		*ant_line;
 	int		**ants_on_paths;
+	int		path_count;
 	int		done;
 }			t_printer;
 
