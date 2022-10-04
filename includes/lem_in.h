@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/03 14:20:27 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:20:42 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ int		parse_data(t_lem *d, t_vec *farm);
 void	free_data(t_lem *d);
 int		solve(t_lem *d, t_bfs *bf);
 int		print(t_lem *d, t_bfs *bf, t_vec *farm);
+
+void	ft_intdelarr(void **apa, size_t n);
 
 #endif
