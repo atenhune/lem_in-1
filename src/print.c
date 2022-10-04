@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/04 17:18:04 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:07:43 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,9 @@ static void	place_ants_in_line(t_lem *d, t_bfs *bf, t_printer *p) //helper 1
 	{
 		while (i < bf->best->count && ants > 0)
 		{
-			if (bf->best->weight[i] + p->ant_line[i] < bf->best->weight[i + 1] + p->ant_line[i + 1] || i == bf->best->count - 1)
+			if (bf->best->weight[i] + p->ant_line[i]
+				< bf->best->weight[i + 1] + p->ant_line[i + 1]
+				|| i == bf->best->count - 1)
 			{
 				p->ant_line[i]++;
 				ants--;
@@ -228,7 +230,6 @@ static int	init_printer(t_bfs *bf, t_printer *p) //util 1
 	p->ants_on_paths = (int **) malloc(sizeof(int *) * bf->best->count);
 	if (!p->ants_on_paths)
 		return (panic(NULL, "Error: Path's memory allocation failed."));
-	// ft_bzero(p->ants_on_paths, sizeof(p->ants_on_paths));
 	i = 0;
 	while (i < bf->best->count)
 	{
@@ -237,6 +238,7 @@ static int	init_printer(t_bfs *bf, t_printer *p) //util 1
 			return (panic(NULL, "Error: Path's pointer allocation failed."));
 		i++;
 	}
+	p->path_count = bf->best->count;
 	p->done = 0;
 	return (1);
 }
@@ -247,8 +249,7 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 
 	ft_printf(">>>> %d <<<<\n", bf->best->turns);
 	// return (1);
-	(void)d;
-	// write(1, farm->data, farm->len);
+	write(1, farm->data, farm->len);
 	ft_vecdel(farm);
 	sort_paths(bf);
 	if (init_printer(bf, &p) < 0) // 
