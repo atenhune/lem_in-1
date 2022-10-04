@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/04 19:31:52 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/04 23:04:27 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int	save_instruction(t_lem *d, t_printer *p, int ant_nbr, int r_index) //
 		return (-1); ///dgfhmgfdsfg
 	if (r_index == d->end)
 		p->done++;
+	ft_strdel(&ant);
 	return (1);
 }
 
@@ -133,6 +134,7 @@ static void	push_ants(t_bfs *bf, t_printer *p) //helper 3
 	{
 		ft_memmove(&p->ants_on_paths[i][1], &p->ants_on_paths[i][0],
 			sizeof(int) * (bf->best->weight[i] - 1)); 
+        p->ants_on_paths[i][0] = 0;
 		i++;
 	}
 }
@@ -247,8 +249,6 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 {
 	t_printer	p;
 
-	ft_printf(">>>> %d <<<<\n", bf->best->turns);
-	// return (1);
 	write(1, farm->data, farm->len);
 	ft_vecdel(farm);
 	sort_paths(bf);
@@ -284,15 +284,18 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 	// 	printf("\n-------------------\n");
 	// }
 	// exit(0);
+
 	if (place_ants_on_paths(d, bf, &p) < 0)
 		return (panic_printer(&p, "Error: GET FUKT."));//eregh
 
+	write(1, p.result.data, p.result.len);
+	free_printer(&p); //vad
+
+	ft_printf("\n>>>> %d <<<<\n", bf->best->turns);
 	del_set(d, bf->best);//free_bfs
 	free(bf->fl_dir);
 	ft_intdelarr((void *)bf->flow, d->room_count);
 
-	write(1, p.result.data, p.result.len);
-	free_printer(&p); //vad
 	// exit(0);
 	// int temp = 0;
 	// int temp2 = 0;
@@ -306,5 +309,6 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 	// }
 	// printf("\n");
 	// ft_printf(">>>> %d <<<<\n", bf->best->turns);
+
 	return (1);
 }
