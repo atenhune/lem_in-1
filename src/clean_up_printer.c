@@ -6,11 +6,25 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:18:54 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/04 00:21:19 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/04 19:06:41 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void	ft_intdelarr(void **apa, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		free(apa[i]);
+		i++;
+	}
+	free(apa);
+	apa = NULL;
+}
 
 void	free_printer(t_printer *p)
 {
@@ -18,8 +32,7 @@ void	free_printer(t_printer *p)
 		ft_vecdel(&p->result);
 	if (p->ant_line)
 		free(p->ant_line);
-	if (p->ants_on_paths)
-		ft_memdelarr((void *)&p->ants_on_paths);
+	ft_intdelarr((void *)p->ants_on_paths, p->path_count);
 }
 
 int	panic_printer(t_printer *p, const char *msg)
