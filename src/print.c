@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/03 23:46:12 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:18:04 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 // 	return (ret);
 // }
 
-static int	save_instruction(t_lem *d, t_printer *p, int ant_nbr, int r_index)
+static int	save_instruction(t_lem *d, t_printer *p, int ant_nbr, int r_index) //parse 2
 {
 	t_room	*temp;
 	char	*ant;
@@ -50,38 +50,62 @@ static int	save_instruction(t_lem *d, t_printer *p, int ant_nbr, int r_index)
 	return (1);
 }
 
-static int	collect_turn(t_lem *d, t_bfs *bf, t_printer *p)
+static int	collect_turn(t_lem *d, t_bfs *bf, t_printer *p) //parse 1 
 {
-	int		i;
-	int		j;
+	int		row;
+	int		col;
 
-	i = 0;
-	j = bf->best->weight[i] - 1;
-	// printf("%d\n", p->ants_on_paths[0][2]);
-	// exit(0);
-	while (i < bf->best->count)
+	row = 0;
+	col = bf->best->weight[row] - 1;
+	while (row < bf->best->count)
 	{
-		while (j >= 0)
+		while (col >= 0)
 		{
-			if (bf->best->paths[i][j] != -1)
+			if (bf->best->paths[row][col] != -1)
 			{
-				if (p->ants_on_paths[i][j])
+				if (p->ants_on_paths[row][col])
 				{
-					// printf("%d\n", p->ants_on_paths[i][j]);
-					// exit(0);
-					if (save_instruction(d, p, p->ants_on_paths[i][j], bf->best->paths[i][j]) < 0)
+					if (save_instruction(d, p, p->ants_on_paths[row][col], bf->best->paths[row][col]) < 0)
 						return (-1); // asdfasdf
 				}
 			}
-			j--;
+			col--;
 		}
-		i++;
-		j = bf->best->weight[i] - 1;
+		row++;
+		col = bf->best->weight[row] - 1;
 	}
+	// int	ofs;
+	// int	end;
+
+	// ofs = 0;
+	// row = 0;
+	// col = bf->best->weight[row] - 1;
+	// end = 0;
+	// while (!end)
+	// {
+	// 	while (row < bf->best->count)
+	// 	{
+	// 		// printf("row: %d col: %d\n", row, col);
+	// 		if (col >= 0 && p->ants_on_paths[row][col])
+	// 		{
+	// 			if (save_instruction(d, p, p->ants_on_paths[row][col],
+	// 			bf->best->paths[row][col]) < 0)
+	//  				return (-1); // asdfasdf
+	// 		}
+	// 		row++;
+	// 		if (row != bf->best->count)
+	// 			col = (bf->best->weight[row] - 1) - ofs;
+	// 	}
+	// 	if (row == bf->best->count && col == 0)
+	// 		end = 1;
+	// 	ofs++;
+	// 	row = 0;
+	// 	col = (bf->best->weight[row] - 1) - ofs;
+	// }
 	return (1);
 }
 
-static void	go_ants_go(t_bfs *bf, t_printer *p)
+static void	go_ants_go(t_bfs *bf, t_printer *p) //helper 4
 {
 	static int	ant_nbr = 1;
 	int			i;
@@ -100,7 +124,7 @@ static void	go_ants_go(t_bfs *bf, t_printer *p)
 	}
 }
 
-static void	push_ants(t_bfs *bf, t_printer *p)
+static void	push_ants(t_bfs *bf, t_printer *p) //helper 3
 {
 	int	i;
 
@@ -108,12 +132,12 @@ static void	push_ants(t_bfs *bf, t_printer *p)
 	while (i < bf->best->count)
 	{
 		ft_memmove(&p->ants_on_paths[i][1], &p->ants_on_paths[i][0],
-			sizeof(int) * (bf->best->weight[bf->best->count - 1] - 1));
+			sizeof(int) * (bf->best->weight[i] - 1)); 
 		i++;
 	}
 }
 
-static int	place_ants_on_paths(t_lem *d, t_bfs *bf, t_printer *p)
+static int	place_ants_on_paths(t_lem *d, t_bfs *bf, t_printer *p) //helper 2
 {
 	if (ft_vecpush(&p->result, "\n") < 0)
 		return (-1); ///dgfhmgfdsfg
@@ -128,23 +152,22 @@ static int	place_ants_on_paths(t_lem *d, t_bfs *bf, t_printer *p)
 	return (1);
 }
 
-static void	place_ants_in_line(t_lem *d, t_bfs *bf, t_printer *p)
+static void	place_ants_in_line(t_lem *d, t_bfs *bf, t_printer *p) //helper 1
 {
-	int	i;
-	int	j;
 	int	ants;
+	int	i;
 
 	ants = d->ants;
 	i = 0;
-	j = 0;
 	while (ants > 0)
 	{
 		while (i < bf->best->count && ants > 0)
 		{
-			if (bf->best->weight[i] <= bf->best->turns)
+			if (bf->best->weight[i] + p->ant_line[i] < bf->best->weight[i + 1] + p->ant_line[i + 1] || i == bf->best->count - 1)
 			{
 				p->ant_line[i]++;
 				ants--;
+				break ;
 			}
 			i++;
 		}
@@ -152,7 +175,7 @@ static void	place_ants_in_line(t_lem *d, t_bfs *bf, t_printer *p)
 	}
 }
 
-static int	path_len(int *path)
+static int	path_len(int *path) //util 3
 {
 	int	i;
 
@@ -162,7 +185,7 @@ static int	path_len(int *path)
 	return (i);
 }
 
-static void	sort_paths(t_bfs *bf)
+static void	sort_paths(t_bfs *bf) //util 2
 {
 	int	i;
 	int	len;
@@ -192,7 +215,7 @@ static void	sort_paths(t_bfs *bf)
 	}
 }
 
-static int	init_printer(t_bfs *bf, t_printer *p)
+static int	init_printer(t_bfs *bf, t_printer *p) //util 1
 {
 	int	i;
 
@@ -205,6 +228,7 @@ static int	init_printer(t_bfs *bf, t_printer *p)
 	p->ants_on_paths = (int **) malloc(sizeof(int *) * bf->best->count);
 	if (!p->ants_on_paths)
 		return (panic(NULL, "Error: Path's memory allocation failed."));
+	// ft_bzero(p->ants_on_paths, sizeof(p->ants_on_paths));
 	i = 0;
 	while (i < bf->best->count)
 	{
@@ -222,29 +246,25 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 	t_printer	p;
 
 	ft_printf(">>>> %d <<<<\n", bf->best->turns);
-	return (1);
+	// return (1);
 	(void)d;
-	write(1, farm->data, farm->len);
+	// write(1, farm->data, farm->len);
 	ft_vecdel(farm);
+	sort_paths(bf);
 	if (init_printer(bf, &p) < 0) // 
 		return (panic_printer(&p, "Error: Couldn't initialize printer."));
-	sort_paths(bf);
 	place_ants_in_line(d, bf, &p);
-	if (place_ants_on_paths(d, bf, &p) < 0)
-		return (panic_printer(&p, "Error: GET FUKT."));//eregh
-	write(1, p.result.data, p.result.len);
-	// exit(0);
-	// int temp = 0;
-	// int temp2 = 0;
-	// while(temp < 3)
-	// {
-	// 	while(temp2 < 3)
-	// 		printf("%d ", p.ants_on_paths[temp][temp2++]);
-	// 	printf("\n");
-	// 	temp2 = 0;
-	// 	temp++;
-	// }
-	// printf("\n");
+	
+	// int a = 0;
+	// printf("ANT_LINE:\n");
+	// while (a < bf->best->count)
+	// 	printf("%2d ", p.ant_line[a++]);
+	// a = 0;
+	// printf("\nWEIGHT:\n");
+	// while (a < bf->best->count)
+	// 	printf("%2d ", bf->best->weight[a++]);
+	// // printf("\n weight: %d\n", bf->best->weight[9]);
+	// printf("\n PATH_COUNT: %d\n", bf->best->count);
 	// size_t	i = 0;
 	// size_t	j = 0;
 	// t_room 		*room;
@@ -262,6 +282,23 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 	// 	i++;
 	// 	printf("\n-------------------\n");
 	// }
+	// exit(0);
+	if (place_ants_on_paths(d, bf, &p) < 0)
+		return (panic_printer(&p, "Error: GET FUKT."));//eregh
+	write(1, p.result.data, p.result.len);
+	free_printer(&p); //vad
+	// exit(0);
+	// int temp = 0;
+	// int temp2 = 0;
+	// while(temp < 3)
+	// {
+	// 	while(temp2 < 3)
+	// 		printf("%d ", p.ants_on_paths[temp][temp2++]);
+	// 	printf("\n");
+	// 	temp2 = 0;
+	// 	temp++;
+	// }
+	// printf("\n");
 	// ft_printf(">>>> %d <<<<\n", bf->best->turns);
 	return (1);
 }
