@@ -6,13 +6,13 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:18:54 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/04 19:06:41 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/04 19:13:03 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	ft_intdelarr(void **apa, size_t n)
+void	ft_intdelarr(void **apa, size_t n)
 {
 	size_t	i;
 
