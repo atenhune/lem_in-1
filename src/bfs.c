@@ -6,7 +6,7 @@
 /*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:23:31 by antti             #+#    #+#             */
-/*   Updated: 2022/10/04 22:06:32 by antti            ###   ########.fr       */
+/*   Updated: 2022/10/04 22:23:27 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -508,6 +508,7 @@ void	del_set(t_lem *d, t_pathset *set)
 	free(set->used);
 	free(set->from);
 	free(set->first);
+	free(set->weight);
 	ft_intdelarr((void *)set->paths, d->room_count);
 	ft_intdelarr((void *)set->child, d->room_count);
 	ft_intdelarr((void *)set->entries, d->room_count);
