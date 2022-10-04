@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/03 13:45:10 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:56:35 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ int	main(int argc, char **argv)
 		return (panic(NULL, "Error: Initializing data failed."));
 	if (parse_data(&d, &farm) < 0)
 		return (panic(&d, "Error: Parsing data failed."));
+	//system("leaks -q lem-in");
 	test_print(&d); //debugging, remove later
 	if (solve(&d, &bf) < 0)
 		return (panic(&d, "Error: No solution."));
+	system("leaks -q lem-in");
 	// remember to free bfs
 	if (print(&d, &bf, &farm) < 0)
 		return (panic(&d, "Error: Failed to print."));
