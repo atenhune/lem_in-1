@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/04 19:07:43 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/04 19:31:52 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,11 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 	// exit(0);
 	if (place_ants_on_paths(d, bf, &p) < 0)
 		return (panic_printer(&p, "Error: GET FUKT."));//eregh
+
+	del_set(d, bf->best);//free_bfs
+	free(bf->fl_dir);
+	ft_intdelarr((void *)bf->flow, d->room_count);
+
 	write(1, p.result.data, p.result.len);
 	free_printer(&p); //vad
 	// exit(0);
