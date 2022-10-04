@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:23:31 by antti             #+#    #+#             */
-/*   Updated: 2022/10/03 16:27:05 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:54:44 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1104,10 +1104,11 @@ void	del_set(t_lem *d, t_pathset *set)
 	// free(set->entries);
 	// free(set->child);
 	// free(set->to);
-	ft_memdelarr((void *)&set->paths);
-	ft_memdelarr((void *)&set->child);
-	ft_memdelarr((void *)&set->entries);
-	ft_memdelarr((void *)&set->to);
+	ft_intdelarr((void *)set->paths, d->room_count);
+	ft_intdelarr((void *)set->child, d->room_count);
+	ft_intdelarr((void *)set->entries, d->room_count);
+	ft_intdelarr((void *)set->to, d->room_count);
+	free(set);
 }
 
 void	print_child(t_lem *d, t_pathset *set)
@@ -1174,14 +1175,14 @@ int	bfs(t_lem *d, t_bfs *bf)
 	ft_memset(bf->fl_dir, -1, sizeof(int) * d->room_count);
 	set_fl_dir(set, bf, d);
 	set->turns = turn_amount(d, set);
-	if	(!bf->best || set->turns <= bf->best->turns)
+	if	(!bf->best || set->turns < bf->best->turns) //<= if double_check()
 	{
-		// if (bf->best)
-			// del_set(d, bf->best);
+		if (bf->best)
+			del_set(d, bf->best);
 		bf->best = set;
 	}
-	// else
-	// 	del_set(d, &set);
+	else
+		del_set(d, set);
 	
 	// t_room *room;
 	// size_t	i = 0;
