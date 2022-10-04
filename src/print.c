@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/04 23:04:27 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/04 23:13:00 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,11 @@ static void	sort_paths(t_bfs *bf) //util 2
 	int	*temp;
 
 	i = 0;
+	if (bf->best->count == 1)
+	{
+		bf->best->weight[0] = path_len(bf->best->paths[i]);
+		return ;
+	}
 	while (i < bf->best->count - 1)
 	{
 		len = path_len(bf->best->paths[i]);
