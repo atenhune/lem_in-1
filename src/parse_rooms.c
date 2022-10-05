@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/05 18:47:00 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/05 21:36:28 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	save_room(t_lem *d, char *name, int x, int y)
 		return (panic(NULL, "Error: Couldn't initialize room's links"));
 	if (ft_vecpush(&d->rooms, &room) < 0)
 		return (panic(NULL, "Error: Memory issue while saving room."));
-	ft_strdel(&name);
 	return (1);
 }
 
