@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/10/05 14:49:04 by atenhune         ###   ########.fr        #
+#    Updated: 2022/10/05 18:37:34 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,16 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)parse_utils.c \
 	   $(SRC_DIR)parse_ants.c \
 	   $(SRC_DIR)parse_rooms.c \
+	   $(SRC_DIR)parse_links.c \
 	   $(SRC_DIR)hash.c \
 	   $(SRC_DIR)solve.c \
 	   $(SRC_DIR)bfs.c \
+	   $(SRC_DIR)bfs_logic.c \
+	   $(SRC_DIR)bfs_helpers.c \
+	   $(SRC_DIR)bfs_utils.c \
+	   $(SRC_DIR)bfs_turns.c \
 	   $(SRC_DIR)bfs_retry.c \
-	   $(SRC_DIR)print.c \
-	   $(SRC_DIR)parse_links.c
+	   $(SRC_DIR)print.c
 
 OBJ_DIR = obj/
 OBJS = $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
