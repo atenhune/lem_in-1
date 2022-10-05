@@ -6,7 +6,7 @@
 /*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/04 23:13:00 by antti            ###   ########.fr       */
+/*   Updated: 2022/10/05 19:31:55 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,17 +250,56 @@ static int	init_printer(t_bfs *bf, t_printer *p) //util 1
 	return (1);
 }
 
+static int	print_send_all(t_lem *d)
+{
+	t_vec	print;
+
+	if (ft_vecnew(&print, 5, sizeof(char)) < 0)	
+		return (panic(NULL, "Error: Couldn't initialize print to send all ants."));
+	(void)d; //here
+	return (1);
+
+}
+
 int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 {
 	t_printer	p;
 
 	write(1, farm->data, farm->len);
 	ft_vecdel(farm);
+	if (d->start_to_endi == true)
+	{
+		if(print_send_all(d) < 0)
+			return(panic(NULL, "Error: Couldn't send all ants at once."));
+		return (1);
+	}
 	sort_paths(bf);
 	if (init_printer(bf, &p) < 0) // 
 		return (panic_printer(&p, "Error: Couldn't initialize printer."));
 	place_ants_in_line(d, bf, &p);
-	
+	if (place_ants_on_paths(d, bf, &p) < 0)
+		return (panic_printer(&p, "Error: GET FUKT."));//eregh
+	write(1, p.result.data, p.result.len);
+	free_printer(&p); //vad
+	ft_printf("\n>>>> %d <<<<\n", bf->best->turns);
+	del_set(d, bf->best);//free_bfs
+	free(bf->fl_dir);
+	ft_intdelarr((void *)bf->flow, d->room_count);
+
+	// exit(0);
+	// int temp = 0;
+	// int temp2 = 0;
+	// while(temp < 3)
+	// {
+	// 	while(temp2 < 3)
+	// 		printf("%d ", p.ants_on_paths[temp][temp2++]);
+	// 	printf("\n");
+	// 	temp2 = 0;
+	// 	temp++;
+	// }
+	// printf("\n");
+	// ft_printf(">>>> %d <<<<\n", bf->best->turns);
+
 	// int a = 0;
 	// printf("ANT_LINE:\n");
 	// while (a < bf->best->count)
@@ -289,31 +328,6 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 	// 	printf("\n-------------------\n");
 	// }
 	// exit(0);
-
-	if (place_ants_on_paths(d, bf, &p) < 0)
-		return (panic_printer(&p, "Error: GET FUKT."));//eregh
-
-	write(1, p.result.data, p.result.len);
-	free_printer(&p); //vad
-
-	ft_printf("\n>>>> %d <<<<\n", bf->best->turns);
-	del_set(d, bf->best);//free_bfs
-	free(bf->fl_dir);
-	ft_intdelarr((void *)bf->flow, d->room_count);
-
-	// exit(0);
-	// int temp = 0;
-	// int temp2 = 0;
-	// while(temp < 3)
-	// {
-	// 	while(temp2 < 3)
-	// 		printf("%d ", p.ants_on_paths[temp][temp2++]);
-	// 	printf("\n");
-	// 	temp2 = 0;
-	// 	temp++;
-	// }
-	// printf("\n");
-	// ft_printf(">>>> %d <<<<\n", bf->best->turns);
 
 	return (1);
 }
