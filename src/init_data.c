@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:56:51 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/03 23:41:26 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/05 18:54:08 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	init_data(t_lem *d, t_vec *farm)
 	if (ft_vecnew(farm, 32, sizeof(char)) < 0)
 		return (panic(NULL, "Error: Couldn't initialize farm."));
 	d->links = NULL;
+	d->room_count = 0;
+	d->start_to_end = false;
 	d->start = -1;
 	d->end = -1;
 	return (1);
