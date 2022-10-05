@@ -6,7 +6,7 @@
 /*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/05 19:31:55 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/05 19:56:22 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,7 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 
 	write(1, farm->data, farm->len);
 	ft_vecdel(farm);
-	if (d->start_to_endi == true)
+	if (d->start_to_end == true)
 	{
 		if(print_send_all(d) < 0)
 			return(panic(NULL, "Error: Couldn't send all ants at once."));
