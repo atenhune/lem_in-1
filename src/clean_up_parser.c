@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:55:07 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/29 11:56:00 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/05 21:40:15 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_parser(t_parser *p)
 {
-	if (p->inputs.data)
+	if (p->inputs.alloc_size)
 		ft_vecdel(&p->inputs);
 	if (p->line)
 		ft_strdel(&p->line);

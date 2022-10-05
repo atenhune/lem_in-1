@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:18:54 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/04 19:13:03 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/05 21:39:28 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_intdelarr(void **apa, size_t n)
 
 void	free_printer(t_printer *p)
 {
-	if (p->result.data)
+	if (p->result.alloc_size)
 		ft_vecdel(&p->result);
 	if (p->ant_line)
 		free(p->ant_line);
