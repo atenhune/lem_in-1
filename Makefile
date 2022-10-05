@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/10/03 16:23:26 by atenhune         ###   ########.fr        #
+#    Updated: 2022/10/05 14:49:04 by atenhune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,11 @@ INCS = -I./includes -I./libft -I./libft/ft_printf/includes
 SRC_DIR = src/
 SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)init_data.c \
+	   $(SRC_DIR)init_pathset.c \
 	   $(SRC_DIR)clean_up.c \
 	   $(SRC_DIR)clean_up_parser.c \
+	   $(SRC_DIR)clean_up_pathset.c \
+	   $(SRC_DIR)clean_up_printer.c \
 	   $(SRC_DIR)parse_data.c \
 	   $(SRC_DIR)parse_utils.c \
 	   $(SRC_DIR)parse_ants.c \
@@ -28,7 +31,6 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)bfs.c \
 	   $(SRC_DIR)bfs_retry.c \
 	   $(SRC_DIR)print.c \
-	   $(SRC_DIR)clean_up_printer.c \
 	   $(SRC_DIR)parse_links.c
 
 OBJ_DIR = obj/
