@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:12:13 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/05 14:13:12 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:47:04 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,10 @@ void	zero_pathset(t_lem *d, t_pathset *set)
 	}
 }
 
-int	init_pathset(t_lem *d, t_pathset *set) // return 0 if malloc fails
+int	init_pathset(t_lem *d, t_pathset *set) // return -1 if malloc fails
 {
 	int	i;
 
-	i = 0;
 	set->seen = malloc(sizeof(int) * (d->room_count * 2));
 	set->used = malloc(sizeof(int) * d->room_count);
 	set->first = malloc(sizeof(int) * d->room_count);
@@ -56,6 +55,7 @@ int	init_pathset(t_lem *d, t_pathset *set) // return 0 if malloc fails
 	set->entries = (int **)malloc(sizeof(int *) * d->room_count);
 	set->child = (int **)malloc(sizeof(int *) * d->room_count);
 	set->to = (int **)malloc(sizeof(int *) * d->room_count);
+	i = 0;
 	while (i < d->room_count)
 	{
 		set->entries[i] = (int *)malloc(sizeof(int) * 2);
