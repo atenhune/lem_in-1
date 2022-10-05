@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:06:32 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/05 19:51:49 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/05 22:20:42 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	parse_ants(t_lem *d, t_parser *p)
 		return (panic(NULL, "Error: Has nothing to do with ants."));
 	d->ants = ft_atoi(p->line);
 	if (d->ants < 0)
-		return (panic(NULL, "Error: Negative ammount of ants."));
+		return (panic(NULL, "Error: Negative amount of ants."));
 	if (d->ants == 0)
 		return (panic(NULL, "Error: No ants."));
 	p->state = ROOMS;
