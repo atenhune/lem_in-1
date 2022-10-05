@@ -3,7 +3,7 @@
 RED=$(tput setaf 160)
 GREEN=$(tput setaf 77)
 YELLOW=$(tput setaf 220)
-BLUE=$(tput setaf 153)
+BLACK=$(tput setaf 235)
 EOC=$(tput sgr0)
 
 if [ "$1" == "" ] || [ "$#" -ne 1 ] || [[ ! $1 =~ ^-?[[:digit:]]+$ ]]
@@ -17,11 +17,12 @@ then
 fi
 
 echo "______________________________________________"
-echo "                           __                 "
-echo "      /  _  _ _    . _     /  _   __/_  _     "
+echo "     _                    ___                 "
+echo "      /  _  _ _    ${RED}.${EOC} _     /  _   __/_  _     "
 echo "     /_,/_'/ / /__/ / /   /  /_'_\ /  _\      "
 echo "______________________________________________"
-echo "______________________________________________"
+echo "______________________________________________${BLACK}"
+echo -e "\x1b[3m                    by altikka & atenhune${EOC}"
 
 declare -i UNDER=0
 declare -i U_RES=0
@@ -159,7 +160,7 @@ printf "  fastest: %.2f" $FASTEST
 printf "s | slowest: ${T_AVR_COLOR}%.2f${EOC}s\n" $SLOWEST
 echo "______________________________________________"
 
-printf "\nDo you wish to remove saved files? (yes/no)${YELLOW}\n"
+printf "\nDo you wish to remove saved files? (yes/no)${YELLOW}\x1b[3m\n"
 read remove_trace
 printf "${EOC}"
 if [ "$remove_trace" == "yes" ]
