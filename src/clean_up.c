@@ -6,11 +6,25 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 16:25:45 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/05 21:39:29 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 08:10:11 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	free_intarr(void **arr, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+	arr = NULL;
+}
 
 static void	free_room_data(t_room *room)
 {
@@ -38,6 +52,7 @@ void	free_data(t_lem *d)
 		temp = NULL;
 	}
 	ft_vecdel(&d->rooms);
+	free_intarr((void *)d->links, d->room_count + 1);
 }
 
 int	panic(t_lem *d, const char *msg)
