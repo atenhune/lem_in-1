@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:06:32 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 11:53:26 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:00:11 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,29 @@
 static int	no_overflow_atoi(const char *str)
 {
 	int					i;
-	int					etu;
+	int					sign;
 	unsigned long long	ret;
 
 	i = 0;
 	ret = 0;
-	etu = 1;
-	while (str[i] == '\n' || str[i] == '\r' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\t' || str[i] == ' ')
+	sign = 1;
+	while (ft_isspace(str[i]) == 1)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			etu = -1;
+			sign = -1;
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		ret = ret * 10 + str[i++] - 48;
-		if (ret > 2147483647 && etu == 1)
+		if (ret > 2147483647 && sign == 1)
 			return (-1);
-		if (ret > 2147483648 && etu == -1)
+		if (ret > 2147483648 && sign == -1)
 			return (-1);
 	}
-	return (ret * etu);
+	return (ret * sign);
 }
 
 int	parse_ants(t_lem *d, t_parser *p)
