@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/10/06 09:11:07 by altikka          ###   ########.fr        #
+#    Updated: 2022/10/06 14:45:22 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)init_parser.c \
 	   $(SRC_DIR)init_bfs.c \
 	   $(SRC_DIR)init_pathset.c \
+	   $(SRC_DIR)init_printer.c \
 	   $(SRC_DIR)clean_up.c \
 	   $(SRC_DIR)clean_up_parser.c \
 	   $(SRC_DIR)clean_up_bfs.c \
@@ -38,7 +39,10 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)bfs_utils.c \
 	   $(SRC_DIR)bfs_turns.c \
 	   $(SRC_DIR)bfs_retry.c \
-	   $(SRC_DIR)print.c
+	   $(SRC_DIR)print.c \
+	   $(SRC_DIR)print_helpers.c \
+	   $(SRC_DIR)print_options.c \
+	   $(SRC_DIR)print_utils.c
 
 OBJ_DIR = obj/
 OBJS = $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
