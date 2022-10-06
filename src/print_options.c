@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_options.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:17:12 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 14:20:18 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 18:34:59 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 int	print_send_all(t_lem *d)
 {
-	t_vec	print;
+	t_room	*temp;
+	int		ant_nbr;
 
-	if (ft_vecnew(&print, 5, sizeof(char)) < 0)
-		return (panic(NULL, "Error: Couldn't initialize print for all ants."));
-	(void)d; //here
+	ant_nbr = 1;
+	temp = ft_vecget(&d->rooms, d->end);
+	while (ant_nbr <= d->ants)
+	{
+		ft_printf("L%d-%s", ant_nbr, temp->name);
+		ant_nbr++;
+		if (ant_nbr <= d->ants)
+			ft_printf(" ");
+	}
+	ft_printf("\n");
 	return (1);
 }
