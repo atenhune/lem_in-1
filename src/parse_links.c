@@ -6,11 +6,29 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:14:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 22:58:55 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 13:08:42 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static int	is_duplicate_link(t_room *room, int target)
+{
+	int		*links;
+	size_t	len;
+	size_t	i;
+
+	links = (int *)room->links.data;
+	len = room->links.len;
+	i = 0;
+	while (i < len)
+	{
+		if (links[i] == target)
+			return (-1);
+		i++;
+	}
+	return (1);
+}
 
 int	parse_links(t_lem *d, t_parser *p)
 {
@@ -31,6 +49,8 @@ int	parse_links(t_lem *d, t_parser *p)
 	if (to == -1)
 		return (panic(NULL, "Error: Invalid 2nd link."));
 	temp = ft_vecget(&d->rooms, from);
+	if (is_duplicate_link(temp, to) < 0)
+		return (panic(NULL, "Error: Duplicate link."));
 	if (ft_vecpush(&temp->links, &to) < 0)
 		return (panic(NULL, "Error: Couldn't save 1st room's link."));
 	temp = ft_vecget(&d->rooms, to);
