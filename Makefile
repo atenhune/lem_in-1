@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/10/05 18:37:34 by altikka          ###   ########.fr        #
+#    Updated: 2022/10/06 08:39:14 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ INCS = -I./includes -I./libft -I./libft/ft_printf/includes
 SRC_DIR = src/
 SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)init_data.c \
+	   $(SRC_DIR)init_parser.c \
+	   $(SRC_DIR)init_bfs.c \
 	   $(SRC_DIR)init_pathset.c \
 	   $(SRC_DIR)clean_up.c \
 	   $(SRC_DIR)clean_up_parser.c \
@@ -30,8 +32,8 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)hash.c \
 	   $(SRC_DIR)solve.c \
 	   $(SRC_DIR)bfs.c \
-	   $(SRC_DIR)bfs_logic.c \
 	   $(SRC_DIR)bfs_helpers.c \
+	   $(SRC_DIR)bfs_logic.c \
 	   $(SRC_DIR)bfs_utils.c \
 	   $(SRC_DIR)bfs_turns.c \
 	   $(SRC_DIR)bfs_retry.c \
