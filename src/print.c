@@ -6,7 +6,7 @@
 /*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/06 08:03:58 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 09:08:33 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,17 +274,21 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 		return (1);
 	}
 	sort_paths(bf);
-	if (init_printer(bf, &p) < 0) // 
+	if (init_printer(bf, &p) < 0)
+	{
+		free_bfs(d, bf);
 		return (panic_printer(&p, "Error: Couldn't initialize printer."));
+	}
 	place_ants_in_line(d, bf, &p);
 	if (place_ants_on_paths(d, bf, &p) < 0)
-		return (panic_printer(&p, "Error: GET FUKT."));//eregh
+	{
+		free_bfs(d, bf);
+		return (panic_printer(&p, "Error: Couldn't send ants."));
+	}
 	write(1, p.result.data, p.result.len);
-	free_printer(&p); //vad
+	free_printer(&p);
 	ft_printf("\n>>>> %d <<<<\n", bf->best->turns);
-	free_pathset(d, bf->best);//free_bfs
-	free(bf->fl_dir);
-	free_intarr((void *)bf->flow, d->room_count);
+	free_bfs(d, bf);
 
 	// exit(0);
 	// int temp = 0;
