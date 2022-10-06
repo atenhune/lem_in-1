@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 08:35:52 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 17:16:14 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 23:36:53 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ static int	allocate_grid(t_lem *d)
 
 int	prepare_data(t_lem *d)
 {
-	if (d->start == -1 || d->end == -1)
+	if (d->start == -1 || d->end == -1 || d->start == (int)d->rooms.len
+		|| d->end == (int)d->rooms.len || d->start == d->end)
 		return (panic(NULL, "Error: Not a map."));
 	if (allocate_grid(d) < 0)
 		return (panic(NULL, "Error: Couldn't create links."));
