@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/09/30 22:04:25 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 17:21:07 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	parse_data(t_lem *d, t_vec *farm) //^write description
 			return (panic_parser(&p, "Error: Memory issue collecting lines."));
 	}
 	if (prepare_data(d) < 0)
-		return (panic_parser(&p, "Error: Memory issue creating links."));
+		return (panic_parser(&p, "Error: Issue with map / creating links."));
 	if (ft_vecappend(farm, &p.inputs) < 0)
 		return (panic_parser(&p, "Error: Memory issue saving farm."));
 	free_parser(&p);
