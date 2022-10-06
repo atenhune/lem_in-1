@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 16:25:45 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 08:10:11 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 12:22:38 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ void	free_intarr(void **arr, size_t n)
 	size_t	i;
 
 	i = 0;
-	while (i < n)
+	if (arr != NULL)
 	{
-		free(arr[i]);
-		i++;
+		while (i < n)
+		{
+			free(arr[i]);
+			i++;
+		}
+		free(arr);
+		arr = NULL;
 	}
-	free(arr);
-	arr = NULL;
 }
 
 static void	free_room_data(t_room *room)
