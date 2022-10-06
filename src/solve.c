@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:55:18 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/05 19:31:57 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 09:04:32 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	solve(t_lem *d, t_bfs *bf)
 	{
 		ret = bfs(d, bf);
 		if (ret < 0)
-			return (panic(NULL, "Error: Memory issue in bfs."));
+			return (panic_bfs(d, bf, "Error: Memory issue in bfs."));
 	}
 	if (!bf->best)
-		return (panic(NULL, "Error: No solution."));
+		return (panic_bfs(d, bf, "Error: No solution."));
 	return (1);
 }
