@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:42:16 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 15:04:01 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 20:20:47 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,7 @@ int	place_ants_on_paths(t_lem *d, t_bfs *bf, t_printer *p)
 		go_ants_go(bf, p);
 		if (collect_turn(d, bf, p) < 0)
 			return (panic(NULL, "Error: One of the lines in answer failed."));
-		if (ft_vecpush(&p->result, "\n") < 0)
-			return (panic(NULL, "Error: Couldn't creating answer."));
+		*(char *)&p->result.data[p->result.len - 1] = '\n';
 	}
 	return (1);
 }
