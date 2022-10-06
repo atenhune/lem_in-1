@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathset.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:52:57 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/06 14:22:18 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 21:36:35 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_pathset
 }			t_pathset;
 
 int		init_pathset(t_lem *d, t_pathset *set);
-void	zero_pathset(t_lem *d, t_pathset *set);
 int		panic_pathset(t_lem *d, t_pathset *set, const char *msg);
 void	free_pathset(t_lem *d, t_pathset *set);
 #endif
