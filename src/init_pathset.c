@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_pathset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:12:13 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/06 19:45:00 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 21:33:11 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	zero_pathset(t_lem *d, t_pathset *set)
+static void	zero_pathset(t_lem *d, t_pathset *set)
 {
 	int	i;
 
@@ -40,29 +40,42 @@ void	zero_pathset(t_lem *d, t_pathset *set)
 	}
 }
 
-int	init_pathset(t_lem *d, t_pathset *set) // return -1 if malloc fails
+static int	expand_pathset(t_lem *d, t_pathset *set)
 {
 	int	i;
 
-	set->seen = malloc(sizeof(int) * (d->room_count * 2));
-	set->used = malloc(sizeof(int) * d->room_count);
-	set->first = malloc(sizeof(int) * d->room_count);
-	set->weight = malloc(sizeof(int) * d->room_count);
-	set->parent = malloc(sizeof(int) * d->room_count);
-	set->from = malloc(sizeof(int) * d->room_count);
-
-	set->paths = (int **)malloc(sizeof(int *) * d->room_count);
-	set->entries = (int **)malloc(sizeof(int *) * d->room_count);
-	set->child = (int **)malloc(sizeof(int *) * d->room_count);
-	set->to = (int **)malloc(sizeof(int *) * d->room_count);
 	i = 0;
 	while (i < d->room_count)
 	{
 		set->entries[i] = (int *)malloc(sizeof(int) * 2);
 		set->to[i] = (int *)malloc(sizeof(int) * d->room_count);
 		set->child[i] = (int *)malloc(sizeof(int) * d->room_count);
-		set->paths[i++] = (int *)malloc(sizeof(int) * d->room_count);
+		set->paths[i] = (int *)malloc(sizeof(int) * d->room_count);
+		if (!set->entries[i] || !set->to[i] || !set->child[i] || !set->paths[i])
+			return (-1);
+		i++;
 	}
+	return (1);
+}
+
+int	init_pathset(t_lem *d, t_pathset *set)
+{
+	set->seen = malloc(sizeof(int) * (d->room_count * 2));
+	set->used = malloc(sizeof(int) * d->room_count);
+	set->first = malloc(sizeof(int) * d->room_count);
+	set->weight = malloc(sizeof(int) * d->room_count);
+	set->parent = malloc(sizeof(int) * d->room_count);
+	set->from = malloc(sizeof(int) * d->room_count);
+	set->paths = (int **)malloc(sizeof(int *) * d->room_count);
+	set->entries = (int **)malloc(sizeof(int *) * d->room_count);
+	set->child = (int **)malloc(sizeof(int *) * d->room_count);
+	set->to = (int **)malloc(sizeof(int *) * d->room_count);
+	if (!set->seen || !set->used || !set->first || !set->weight
+		|| !set->parent || !set->from || !set->paths
+		|| !set->entries || !set->child || !set->to)
+		return (-1);
+	if (expand_pathset(d, set) < 0)
+		return (-1);
 	zero_pathset(d, set);
 	return (1);
 }
