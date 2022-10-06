@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/10/06 08:39:14 by altikka          ###   ########.fr        #
+#    Updated: 2022/10/06 09:11:07 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)init_pathset.c \
 	   $(SRC_DIR)clean_up.c \
 	   $(SRC_DIR)clean_up_parser.c \
+	   $(SRC_DIR)clean_up_bfs.c \
 	   $(SRC_DIR)clean_up_pathset.c \
 	   $(SRC_DIR)clean_up_printer.c \
 	   $(SRC_DIR)parse_data.c \
