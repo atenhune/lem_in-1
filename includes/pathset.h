@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:52:57 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/05 14:24:45 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/06 08:04:20 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ typedef struct s_pathset
 int		init_pathset(t_lem *d, t_pathset *set);
 void	zero_pathset(t_lem *d, t_pathset *set);
 int		panic_pathset(t_lem *d, t_pathset *set, const char *msg);
-void	del_set(t_lem *d, t_pathset *set);
+void	free_pathset(t_lem *d, t_pathset *set);
 #endif
