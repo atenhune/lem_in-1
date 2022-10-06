@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/04 23:36:36 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 13:05:29 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	main(int argc, char **argv)
 	if (init_data(&d, &farm) < 0)
 		return (panic(NULL, "Error: Initializing data failed."));
 	if (parse_data(&d, &farm) < 0)
-		return (panic(&d, "Error: Parsing data failed."));
+		return (ft_vecdel(&farm), panic(&d, "Error: Parsing data failed."));
 	if (solve(&d, &bf) < 0)
-		return (panic(&d, "Error: No solution."));
+		return (ft_vecdel(&farm), panic(&d, "Error: No solution."));
 	if (print(&d, &bf, &farm) < 0)
 		return (panic(&d, "Error: Failed to print."));
 	free_data(&d);
