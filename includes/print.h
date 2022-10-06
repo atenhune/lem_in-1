@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:14:15 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/04 18:25:15 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 14:45:00 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ typedef struct s_printer
 	int		done;
 }			t_printer;
 
-void	free_printer(t_printer *p);
+int		init_printer(t_bfs *bf, t_printer *p);
 int		panic_printer(t_printer *p, const char *msg);
+void	free_printer(t_printer *p);
+void	sort_paths(t_bfs *bf);
+void	place_ants_in_line(t_lem *d, t_bfs *bf, t_printer *p);
+int		place_ants_on_paths(t_lem *d, t_bfs *bf, t_printer *p);
+//print options:
+int		print_send_all(t_lem *d);
 
 #endif
