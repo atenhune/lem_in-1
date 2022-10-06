@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:51:41 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/05 18:32:59 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 09:10:37 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	debug_bfs(t_lem *d, t_bfs *bf, t_pathset *set);
 
 int		init_bfs(t_lem *d, t_bfs *bfs);
 int		bfs(t_lem *d, t_bfs *bf);
+int		panic_bfs(t_lem *d, t_bfs *bf, const char *msg);
+void	free_bfs(t_lem *d, t_bfs *bf);
 void	set_seen_from_start(t_lem *d, t_bfs *bf, t_pathset *set);
 int		is_next(t_bfs *bf, t_pathset *set);
 int		stepped_on_a_path(t_bfs *bf, t_pathset *set);
