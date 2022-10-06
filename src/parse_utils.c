@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 08:35:52 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/05 19:03:59 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 17:16:14 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static int	allocate_grid(t_lem *d)
 
 int	prepare_data(t_lem *d)
 {
+	if (d->start == -1 || d->end == -1)
+		return (panic(NULL, "Error: Not a map."));
 	if (allocate_grid(d) < 0)
 		return (panic(NULL, "Error: Couldn't create links."));
 	populate_grid(d);
