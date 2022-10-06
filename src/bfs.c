@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:23:31 by antti             #+#    #+#             */
-/*   Updated: 2022/10/05 18:36:42 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 08:06:36 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	is_best(t_lem *d, t_bfs *bf, t_pathset *set)
 	if (!bf->best || set->turns < bf->best->turns)
 	{
 		if (bf->best)
-			del_set(d, bf->best);
+			free_pathset(d, bf->best);
 		bf->best = set;
 	}
 	else
-		del_set(d, set);
+		free_pathset(d, set);
 }
 
 int	stepped_on_a_path(t_bfs *bf, t_pathset *set)
@@ -95,7 +95,7 @@ int	bfs(t_lem *d, t_bfs *bf)
 	{
 		if (!is_next(bf, set))
 		{
-			del_set(d, set);
+			free_pathset(d, set);
 			return (0);
 		}
 		update_seen(d, bf, set);
