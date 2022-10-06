@@ -6,7 +6,7 @@
 /*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/05 19:56:22 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/06 08:03:58 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,9 +282,9 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm)
 	write(1, p.result.data, p.result.len);
 	free_printer(&p); //vad
 	ft_printf("\n>>>> %d <<<<\n", bf->best->turns);
-	del_set(d, bf->best);//free_bfs
+	free_pathset(d, bf->best);//free_bfs
 	free(bf->fl_dir);
-	ft_intdelarr((void *)bf->flow, d->room_count);
+	free_intarr((void *)bf->flow, d->room_count);
 
 	// exit(0);
 	// int temp = 0;

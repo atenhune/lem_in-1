@@ -6,13 +6,13 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:50:02 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/05 14:50:06 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/06 08:05:34 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	del_set(t_lem *d, t_pathset *set)
+void	free_pathset(t_lem *d, t_pathset *set)
 {
 	free(set->parent);
 	free(set->seen);
@@ -20,10 +20,10 @@ void	del_set(t_lem *d, t_pathset *set)
 	free(set->from);
 	free(set->first);
 	free(set->weight);
-	ft_intdelarr((void *)set->paths, d->room_count);
-	ft_intdelarr((void *)set->child, d->room_count);
-	ft_intdelarr((void *)set->entries, d->room_count);
-	ft_intdelarr((void *)set->to, d->room_count);
+	free_intarr((void *)set->paths, d->room_count);
+	free_intarr((void *)set->child, d->room_count);
+	free_intarr((void *)set->entries, d->room_count);
+	free_intarr((void *)set->to, d->room_count);
 	free(set);
 }
 
@@ -31,6 +31,6 @@ int	panic_pathset(t_lem *d, t_pathset *set, const char *msg)
 {
 	ft_putendl_fd(msg, 2);
 	if (set)
-		del_set(d, set);
+		free_pathset(d, set);
 	return (-1);
 }
