@@ -6,12 +6,11 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:47:46 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 19:53:41 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:42:38 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
-
 # define PARSE_H
 
 /*
@@ -40,7 +39,7 @@ int		parse_rooms(t_lem *d, t_parser *p);
 int		parse_links(t_lem *d, t_parser *p);
 
 typedef int				(*t_parsers)(t_lem *, t_parser *);
-//						is this legal global?
+
 static const t_parsers	g_parsers[3] = {
 	parse_ants,
 	parse_rooms,
