@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/05 21:36:28 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 18:27:09 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,7 @@ static int	validate_room(t_parser *p, char **room)
 	return (1);
 }
 
-/*
-** STRUCTURE
-** i: validare S&E rooms
-** ii: validate that line has '-'
-** iii: init hashmap for links 
-** iv: change STATE
-** v: jump to parse_links
-*/
-
-static int	lookup_and_insert(t_lem *d, t_parser *p) //^not plan but descr.
+static int	lookup_and_insert(t_lem *d, t_parser *p)
 {
 	t_room	*temp;
 	size_t	i;
@@ -77,6 +68,15 @@ static int	lookup_and_insert(t_lem *d, t_parser *p) //^not plan but descr.
 	return (1);
 }
 
+/*
+** STRUCTURE
+** i: validare start & rooms
+** ii: validate that line has '-'
+** iii: init hashmap for links 
+** iv: change STATE
+** v: jump to parse_links
+*/
+
 static int	relay_to_links(t_lem *d, t_parser *p)
 {
 	if (d->start == -1 || d->end == -1 || p->start != 1 || p->end != 1)
@@ -92,14 +92,13 @@ static int	relay_to_links(t_lem *d, t_parser *p)
 /*
 ** STRUCTURE
 ** i: split by ' '
-** ii: check whether we are at links already -> prepare jump to links via fun
+** ii: check whether we are at links already -> prepare jump to links
 ** iii: validate line with room info
-** iv: save room to t_lem struct
-** v: assign S&E rooms
-** vi: clean up
+** iv: save room to t_lem d
+** v: assign start & rooms
 */
 
-int	parse_rooms(t_lem *d, t_parser *p) //^not plan but descr.
+int	parse_rooms(t_lem *d, t_parser *p)
 {
 	char	**room;
 
