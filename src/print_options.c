@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:17:12 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 17:55:24 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 20:52:44 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ static void	print_paths(t_lem *d, t_bfs *bf, t_printer *p, t_vec *farm)
 		while (bf->best->paths[i][j] != -1)
 		{
 			room = ft_vecget(&d->rooms, bf->best->paths[i][j]);
-			ft_printf("|%s| ", room->name);
+			ft_printf("|%s|", room->name);
 			j++;
 			if (bf->best->paths[i][j] != -1)
-				ft_printf("-> ");
+				ft_printf(" -> ");
 		}
 		j = 0;
 		i++;
