@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/10/06 14:45:22 by altikka          ###   ########.fr        #
+#    Updated: 2022/10/07 11:08:20 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ INCS = -I./includes -I./libft -I./libft/ft_printf/includes
 
 SRC_DIR = src/
 SRCS = $(SRC_DIR)main.c \
+	   $(SRC_DIR)init_flags.c \
 	   $(SRC_DIR)init_data.c \
 	   $(SRC_DIR)init_parser.c \
 	   $(SRC_DIR)init_bfs.c \
