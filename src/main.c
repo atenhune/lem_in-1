@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 13:05:29 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 10:15:55 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* 
 ** PLAN
-** +: some options like -q etc
+** +: some options like -q etc.
 ** i: init data
 ** ii: parse data
 ** iii: solve
@@ -27,9 +27,8 @@ int	main(int argc, char **argv)
 	t_bfs	bf;
 	t_vec	farm;
 
-	//* +: -q etc
-	(void ) argc;
-	(void ) argv;
+	if (init_flags(&d.flag, argc, argv) <= 0)
+		return (ft_putstr(LEM_USAGE), 0);
 	if (init_data(&d, &farm) < 0)
 		return (panic(NULL, "Error: Initializing data failed."));
 	if (parse_data(&d, &farm) < 0)
