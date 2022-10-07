@@ -6,7 +6,7 @@ YELLOW=$(tput setaf 220)
 BLACK=$(tput setaf 235)
 EOC=$(tput sgr0)
 
-if [ "$1" == "" ] || [ "$#" -ne 1 ] || [[ ! $1 =~ ^-?[[:digit:]]+$ ]]
+if [ "$1" == "" ] || [ "$#" -gt 2 ] || [[ ! $1 =~ ^-?[[:digit:]]+$ ]]
 then
 	printf "\nusage: ./run.sh [number]\n
 	E.g. '${YELLOW}./run.sh 20${EOC}' will run the script 20 times on big-superposition maps.
@@ -14,6 +14,13 @@ then
 	Results better than expected will be shown in ${GREEN}green${EOC},
 	and results worse/slower than will be highlighted in ${RED}red${EOC}.\n\n"
 	exit
+fi
+
+FLAG=""
+
+if [ "$#" -eq 2 ]
+then
+	FLAG="$2"
 fi
 
 echo "______________________________________________"
@@ -47,7 +54,7 @@ do
 	mkdir -p maps/trace_maps/
 	./maps/generator --big-superposition > maps/trace_maps/temp.map
 	EXPECTED=( `grep "required: " maps/trace_maps/temp.map | cut -f8 -d " " | head -1` )
-	(time ./lem-in <  maps/trace_maps/temp.map) > maps/trace_maps/temp_res.txt 2> maps/trace_maps/temp_time.txt
+	(time ./lem-in $FLAG < maps/trace_maps/temp.map) > maps/trace_maps/temp_res.txt 2> maps/trace_maps/temp_time.txt
 	RESULT=( `grep ">>>>" maps/trace_maps/temp_res.txt | cut -f2 -d " "` )
 	if [ "$RESULT" == "" ]
 	then
