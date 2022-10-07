@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 17:21:07 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 18:23:31 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,7 @@ static int	save_commands(t_lem *d, t_parser *p)
 	return (1);
 }
 
-/*
-** STRUCTURE
-** i: ants
-** ii: rooms
-** iii: links
-*/
-
-int	parse_data(t_lem *d, t_vec *farm) //^write description
+int	parse_data(t_lem *d, t_vec *farm)
 {
 	t_parser	p;
 	int			ret;
