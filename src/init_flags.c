@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:40:34 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 11:13:21 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 13:13:02 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static int	set_flag(t_flag *flag, char *arg_ptr)
 	p = ft_strchr(LEM_FLAGS, *arg_ptr++);
 	if (!p || *arg_ptr)
 		return (-1);
-	if (*arg_ptr == 'p')
+	if (*p == 'p')
 		*flag = PATHS;
-	if (*arg_ptr == 'q')
+	if (*p == 'q')
 		*flag = QUIET;
 	return (1);
 }
