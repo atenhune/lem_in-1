@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:40:34 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 16:09:52 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 18:01:16 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	set_flag(t_flag *flag, char *arg_ptr)
 	return (1);
 }
 
-int		init_flags(t_flag *flag, int argc, char **argv)
+int	init_flags(t_flag *flag, int argc, char **argv)
 {
 	char	*p;
 
