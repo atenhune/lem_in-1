@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 08:24:33 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 10:16:09 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 11:41:34 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define LEM_FLAGS "pq"
 
-typedef enum s_flag
+typedef enum e_flag
 {
 		NONE,
 		PATHS,
