@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:40:34 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 13:13:02 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 16:09:52 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	set_flag(t_flag *flag, char *arg_ptr)
 		*flag = PATHS;
 	if (*p == 'q')
 		*flag = QUIET;
+	if (*p == 't')
+		*flag = TEST;
 	return (1);
 }
 
