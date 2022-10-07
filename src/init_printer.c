@@ -6,13 +6,13 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:07:39 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 15:04:02 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 13:59:47 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	init_printer(t_bfs *bf, t_printer *p)
+int	init_printer(t_bfs *bf, t_printer *p, t_flag flag)
 {
 	int	i;
 
@@ -35,6 +35,7 @@ int	init_printer(t_bfs *bf, t_printer *p)
 		i++;
 	}
 	p->path_count = bf->best->count;
+	p->flag = flag;
 	p->done = 0;
 	return (1);
 }
