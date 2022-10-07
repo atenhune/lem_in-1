@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/07 17:55:49 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 19:53:47 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ int	print(t_lem *d, t_bfs *bf, t_vec *farm, t_flag flag)
 	if (init_printer(bf, &p, flag) < 0)
 	{
 		free_bfs(d, bf);
+		ft_vecdel(farm);
 		return (panic_printer(&p, "Error: Couldn't initialize printer."));
 	}
 	place_ants_in_line(d, bf, &p);
 	if (place_ants_on_paths(d, bf, &p) < 0)
 	{
 		free_bfs(d, bf);
+		ft_vecdel(farm);
 		return (panic_printer(&p, "Error: Couldn't send ants."));
 	}
 	print_options(d, bf, &p, farm);
