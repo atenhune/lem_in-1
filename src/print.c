@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/07 11:05:12 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 12:30:42 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ static int	print_send_all(t_lem *d, t_vec *farm)
 	ft_vecdel(farm);
 	if (d->flag == QUIET)
 		return (ft_putendl(">>>> 1 <<<<"), 1);
-	//if (d->flag == PATHS)
-		//prints right stuff in right format
-	ant_nbr = 1;
+	ft_printf("\n");
 	temp = ft_vecget(&d->rooms, d->end);
+	if (d->flag == PATHS)
+		ft_printf("Path:\n|%s|\n", temp->name);
+	ant_nbr = 1;
 	while (ant_nbr <= d->ants)
 	{
 		ft_printf("L%d-%s", ant_nbr, temp->name);
