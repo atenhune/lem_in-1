@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 08:24:33 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 11:41:34 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 14:27:30 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define LEM_USAGE "\nusage: ./lem-in [-hpq] < [file]\n\
  options:\n\
  	"BOLD_ON"-h"BOLD_OFF"\thelp\n\
-	"BOLD_ON"-p"BOLD_OFF"\tdisplay only paths and steps taken\n\
+	"BOLD_ON"-p"BOLD_OFF"\tdisplay additional path information\n\
 	"BOLD_ON"-q"BOLD_OFF"\tquiet mode\n\n"
 
 # define LEM_FLAGS "pq"
