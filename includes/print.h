@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:14:15 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/07 13:57:56 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:56:37 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	sort_paths(t_bfs *bf);
 void	place_ants_in_line(t_lem *d, t_bfs *bf, t_printer *p);
 int		place_ants_on_paths(t_lem *d, t_bfs *bf, t_printer *p);
 void	print_options(t_lem *d, t_bfs *bf, t_printer *p, t_vec *farm);
+int		print_send_all(t_lem *d, t_vec *farm, t_flag flag);
 
 #endif
