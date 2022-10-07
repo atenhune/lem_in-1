@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:17:12 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 14:21:18 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:08:06 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	print_options(t_lem *d, t_bfs *bf, t_printer *p, t_vec *farm)
 	if (p->flag == PATHS)
 		print_paths(d, bf, p, farm);
 	else if (p->flag == QUIET)
+		ft_printf("Solved using %d turns.\n", bf->best->turns);
+	else if (p->flag == TEST)
 		ft_printf(">>>> %d <<<<\n", bf->best->turns);
 	else
 		normal_print(p, farm);
