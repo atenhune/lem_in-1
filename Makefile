@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 11:20:04 by altikka           #+#    #+#              #
-#    Updated: 2022/10/07 11:08:20 by altikka          ###   ########.fr        #
+#    Updated: 2022/10/07 17:36:35 by altikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,10 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)clean_up_pathset.c \
 	   $(SRC_DIR)clean_up_printer.c \
 	   $(SRC_DIR)parse_data.c \
-	   $(SRC_DIR)parse_utils.c \
 	   $(SRC_DIR)parse_ants.c \
 	   $(SRC_DIR)parse_rooms.c \
 	   $(SRC_DIR)parse_links.c \
+	   $(SRC_DIR)parse_utils.c \
 	   $(SRC_DIR)hash.c \
 	   $(SRC_DIR)solve.c \
 	   $(SRC_DIR)bfs.c \
@@ -39,7 +39,6 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)bfs_logic.c \
 	   $(SRC_DIR)bfs_utils.c \
 	   $(SRC_DIR)bfs_turns.c \
-	   $(SRC_DIR)bfs_retry.c \
 	   $(SRC_DIR)print.c \
 	   $(SRC_DIR)print_helpers.c \
 	   $(SRC_DIR)print_options.c \
