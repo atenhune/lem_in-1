@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:20:29 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/05 18:17:32 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 09:05:42 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	path_mapping(t_lem *d, t_bfs *bf, t_pathset *set, int i)
 			j++;
 		if (j == d->room_count) //flow chart fail safe, remove later
 		{
-			printf("path_collector exit %d cur name: \n", i); //
+			ft_printf("path_collector exit %d cur name: \n", i); //
 			exit(0);
 		}
 		set->cur = d->links[set->cur][j];
