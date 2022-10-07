@@ -6,12 +6,11 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 13:51:59 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:40:04 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
-
 # define LEM_IN_H
 
 # include "libft.h"
