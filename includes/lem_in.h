@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 19:54:01 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 09:03:04 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,12 @@
 
 # include "libft.h"
 # include "hashmap.h"
+# include "flags.h"
 # include "data.h"
 # include "parse.h"
 # include "pathset.h"
 # include "bfs.h"
 # include "print.h"
-
-//////////////////////
-# include <stdio.h> // remove me!
-//////////////////////
 
 /*
 **STRUCTION FOR THE PROGRAM
