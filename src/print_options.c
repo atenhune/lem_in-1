@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:17:12 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 14:18:03 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:21:18 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	print_paths(t_lem *d, t_bfs *bf, t_printer *p, t_vec *farm)
 	t_room	*room;
 
 	normal_print(p, farm);
-	ft_printf("Path count: %d\n", bf->best->count);
+	ft_printf("\nPath count: %d\n", bf->best->count);
 	i = 0;
 	j = 0;
 	while (bf->best->paths[i][j] != -1)
