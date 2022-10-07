@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:34 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/07 09:29:51 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:36:51 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ typedef struct s_lem
 	int		ants;
 	t_vec	rooms;
 	int		**links;
-	int		room_count; // <------ antti muuttaa!
+	int		room_count;
 	bool	start_to_end;
 	int		start;
 	int		end;
