@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 17:40:04 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 20:45:01 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,6 @@
 # include "pathset.h"
 # include "bfs.h"
 # include "print.h"
-
-/*
-**STRUCTION FOR THE PROGRAM
-*/
-
-typedef struct s_room
-{
-	char	*name;
-	int		x;
-	int		y;
-	t_vec	links;
-	int		index;
-}			t_room;
 
 /*
 **FUNCTIONS FOR THE PROGRAM
