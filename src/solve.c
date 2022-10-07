@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:55:18 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/06 09:04:32 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 14:45:04 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	solve(t_lem *d, t_bfs *bf)
 			return (panic_bfs(d, bf, "Error: Memory issue in bfs."));
 	}
 	if (!bf->best)
-		return (panic_bfs(d, bf, "Error: No solution."));
+		return (panic_bfs(d, bf, "Error: Failed to find a path."));
 	return (1);
 }
