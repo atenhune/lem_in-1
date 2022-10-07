@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up_bfs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:57:39 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 19:43:53 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 14:40:19 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	free_bfs(t_lem *d, t_bfs *bf)
 {
 	free_intarr((void *)bf->flow, d->room_count);
 	free(bf->fl_dir);
-	free_pathset(d, bf->best);
+	if (bf->best != NULL)
+		free_pathset(d, bf->best);
 }
 
 int	panic_bfs(t_lem *d, t_bfs *bf, const char *msg)
