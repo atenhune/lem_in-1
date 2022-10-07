@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/07 14:02:22 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 16:11:47 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	print_send_all(t_lem *d, t_vec *farm, t_flag flag)
 		write(1, farm->data, farm->len);
 	ft_vecdel(farm);
 	if (flag == QUIET)
+		return (ft_putendl("Solved in 1 turn."), 1);
+	if (flag == TEST)
 		return (ft_putendl(">>>> 1 <<<<"), 1);
 	ft_printf("\n");
 	temp = ft_vecget(&d->rooms, d->end);
