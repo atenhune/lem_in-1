@@ -6,25 +6,25 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:16:08 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/07 12:30:42 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:02:22 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int	print_send_all(t_lem *d, t_vec *farm)
+static int	print_send_all(t_lem *d, t_vec *farm, t_flag flag)
 {
 	t_room	*temp;
 	int		ant_nbr;
 
-	if (d->flag != QUIET)
+	if (flag != QUIET)
 		write(1, farm->data, farm->len);
 	ft_vecdel(farm);
-	if (d->flag == QUIET)
+	if (flag == QUIET)
 		return (ft_putendl(">>>> 1 <<<<"), 1);
 	ft_printf("\n");
 	temp = ft_vecget(&d->rooms, d->end);
-	if (d->flag == PATHS)
+	if (flag == PATHS)
 		ft_printf("Path:\n|%s|\n", temp->name);
 	ant_nbr = 1;
 	while (ant_nbr <= d->ants)
@@ -38,14 +38,14 @@ static int	print_send_all(t_lem *d, t_vec *farm)
 	return (1);
 }
 
-int	print(t_lem *d, t_bfs *bf, t_vec *farm)
+int	print(t_lem *d, t_bfs *bf, t_vec *farm, t_flag flag)
 {
 	t_printer	p;
 
 	if (d->start_to_end == true)
-		return (print_send_all(d, farm));
+		return (print_send_all(d, farm, flag));
 	sort_paths(bf);
-	if (init_printer(bf, &p) < 0)
+	if (init_printer(bf, &p, flag) < 0)
 	{
 		free_bfs(d, bf);
 		return (panic_printer(&p, "Error: Couldn't initialize printer."));
