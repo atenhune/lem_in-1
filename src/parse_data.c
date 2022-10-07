@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 09:35:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 21:29:48 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 22:11:20 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	save_commands(t_lem *d, t_parser *p)
 		d->end = d->rooms.len;
 		p->end++;
 	}
-	if (p->state != ROOMS && (p->start || p->end))
+	if (p->state == ANTS && (p->start || p->end))
 		return (-1);
 	return (1);
 }
