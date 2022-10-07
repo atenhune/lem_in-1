@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:09:22 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 09:03:04 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/07 13:51:59 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int		panic(t_lem *d, const char *msg);
 int		parse_data(t_lem *d, t_vec *farm);
 void	free_data(t_lem *d);
 int		solve(t_lem *d, t_bfs *bf);
-int		print(t_lem *d, t_bfs *bf, t_vec *farm);
+int		print(t_lem *d, t_bfs *bf, t_vec *farm, t_flag flag);
 
 #endif
