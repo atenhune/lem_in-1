@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_links.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:14:18 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/06 13:08:42 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/08 14:12:33 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	parse_links(t_lem *d, t_parser *p)
 		return (panic(NULL, "Error: Invalid 1st link."));
 	*ptr++ = '-';
 	to = hash_get(ptr, *(&p->table));
-	if (to == -1)
+	if (to == -1 || to == from)
 		return (panic(NULL, "Error: Invalid 2nd link."));
 	temp = ft_vecget(&d->rooms, from);
 	if (is_duplicate_link(temp, to) < 0)
