@@ -6,11 +6,19 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:55:18 by atenhune          #+#    #+#             */
-/*   Updated: 2022/10/07 14:45:04 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/10/10 10:51:15 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+/*
+** IDEA
+** After initializing bfs struct program calls
+** bfs function until path(s) can no longer
+** be found. This results in either the best possible pathset
+** or no solution at all.
+*/
 
 int	solve(t_lem *d, t_bfs *bf)
 {
