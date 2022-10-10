@@ -6,7 +6,7 @@
 /*   By: altikka & atenhune <@student.hive.fi>       +#+  +:+       +#+       */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:08:17 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/10 12:39:27 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/10 12:52:33 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	parse_rooms(t_lem *d, t_parser *p)
 		ft_strdelarr(&room);
 		return (panic(NULL, "Error: Invalid room."));
 	}
-	if (!ft_isnbr(room[1]) || !ft_isnbr([2]))
+	if (!ft_isnbr(room[1]) || !ft_isnbr(room[2]))
 		return (ft_strdelarr(&room), panic(NULL, "Error: Invalid room coord."));
 	if (save_room(d, ft_strdup(room[0]),
 			ft_atoi(room[1]),
