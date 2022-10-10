@@ -6,7 +6,7 @@
 /*   By: altikka <altikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:51:30 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/05 18:28:27 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/10 11:02:05 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,17 @@ static void	case_i(t_lem *d, t_pathset *set)
 	}
 	set->first[set->cur] = 1;
 }
+
+/*
+** THE LOGIC
+** While updating seen room list the program follow three rules:
+** case I:		Entering a room that has no flow from a room 
+**				that also has no flow
+** case II: 	Entering a room that is part of a flow network from a room
+**		   		that is not
+** case III: 	Entering a room that that is part of a flow network from a room
+**				that is also a part of that said flow network
+*/
 
 void	update_seen(t_lem *d, t_bfs *bf, t_pathset *set)
 {
