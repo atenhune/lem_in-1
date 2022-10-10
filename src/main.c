@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:07:37 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/07 18:08:13 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/10 11:04:15 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 /* 
 ** PROGRAM SEQUENCE
-** +: init flags for output
-** i: init data
-** ii: parse data
-** iii: solve
-** iv: print
+** -: init flags for output
+** I: init data
+** II: parse data
+** III: solve
+** IV: print
 */
 
 int	main(int argc, char **argv)
