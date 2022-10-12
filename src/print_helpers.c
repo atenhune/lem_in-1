@@ -6,7 +6,7 @@
 /*   By: altikka & atenhune <@student.hive.fi>       +#+  +:+       +#+       */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:42:16 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/10 11:33:15 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/12 07:48:25 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	collect_turn(t_lem *d, t_bfs *bf, t_printer *p)
 					if (save_instruction(d, p,
 							p->ants_on_paths[row][col],
 						bf->best->paths[row][col]) < 0)
-						return (panic(NULL, "Error: Couldn't save."));
+						return (panic(NULL, "Error: Couldn't send an ant."));
 				}
 			}
 			col--;

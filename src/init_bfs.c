@@ -6,7 +6,7 @@
 /*   By: altikka & atenhune <@student.hive.fi>       +#+  +:+       +#+       */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:34:44 by altikka           #+#    #+#             */
-/*   Updated: 2022/10/10 11:29:14 by altikka          ###   ########.fr       */
+/*   Updated: 2022/10/12 07:45:07 by altikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	init_bfs(t_lem *d, t_bfs *bfs)
 	{
 		bfs->flow[i] = malloc(sizeof(int) * d->room_count);
 		if (!bfs->flow[i])
-			return (panic(NULL, "Error: Couldn't initialize flow chart."));
+			return (panic(NULL, "Error: Couldn't initialize flow."));
 		i++;
 	}
 	zero_bfs(d, bfs);

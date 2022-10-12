@@ -58,7 +58,7 @@ do
 	RESULT=( `grep ">>>>" maps/trace_maps/temp_res.txt | cut -f2 -d " "` )
 	if [ "$RESULT" == "" ]
 	then
-		printf "ERROR:\tPlease make sure your lem-in outputs the result formated\n\tas: '${YELLOW}>>>> [number of turns] <<<<${EOC}' followed by a newline.\n"
+		printf "ERROR:\tPlease make sure your lem-in outputs the result formatted\n\tas: '${YELLOW}>>>> [number of turns] <<<<${EOC}' followed by a newline.\n"
 		printf "\tThis can be implemented as a flagged output in your program and\n\texecuted as: './run.sh [number] [lem-in flag]' in here.\n"
 		printf "\tHappy testing!\n\n"
 		rm -fr maps/trace_maps/
