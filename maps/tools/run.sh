@@ -142,7 +142,7 @@ printf " ${GREEN}${UNDER}${EOC}/$1 of maps were solved better than expected.\n"
 if [ $UNDER -gt 0 ]
 then
 	U_AVR=$(echo "$U_RES/$UNDER" | bc -l)
-	printf "  avarage: +"
+	printf "  average: +"
 	printf %.2f $U_AVR
 	printf " | best: ${WIN}\n"
 fi
@@ -151,12 +151,12 @@ printf " ${RED}${OVER}${EOC}/$1 of maps were solved worse than expected.\n"
 if [ $OVER -gt 0 ]
 then
 	O_AVR=$(echo "$O_RES/$OVER" | bc -l)
-	printf "  avarage: -"
+	printf "  average: -"
 	printf %.2f $O_AVR
 	printf " | worst: ${LOSS}\n"
 fi
 
-printf "Time:\n  avarage: "
+printf "Time:\n  average: "
 T_AVR=$(echo "$T/$1" | bc -l)
 T_AVR_COLOR=$EOC
 if [ $(echo "$SLOWEST > 2.999" | bc -l) -eq 1 ]
