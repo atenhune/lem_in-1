@@ -61,7 +61,7 @@ E.g. sometimes it is better to find two longer routes instead of using the short
 
 ![lrm_g2](https://user-images.githubusercontent.com/77926655/195675450-77109f47-24d1-44d7-8c55-96f7a089df89.gif)
 
-As can be observed from the example above, there are times when the right solution is **not to** use the shortest route available [red], but instead the combination of routes that produce the quickest solution [green]. It all depends on:
+As can be observed from the example above, there are times when the right solution is **not to** use the shortest route available, but instead the combination of routes that produce the quickest solution. It all depends on several factors:
 
 `I` number of ants
 
