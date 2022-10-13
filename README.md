@@ -27,7 +27,7 @@ To run the program after compiling it with Makefile launch it from the root of t
 ./lem-in < maps/augment_maps/augment_8.map
 ```
 
-# **The Approach**
+## **The Approach**
 
 **Research**
 
@@ -82,6 +82,6 @@ All the examples are simplified versions of the problems that the graph traversa
 
 [VIDEO]
 
-# **Final thoughts**
+## **Final thoughts**
 
 to be concluded…
