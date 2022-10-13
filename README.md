@@ -10,7 +10,7 @@ By [altikka](https://github.com/reviisori) & [atenhune](https://github.com/atenh
 
 **Introduction**
 
-The goal of the project is to find the quickest way to get **N** ants across a given maze-like network of rooms. The solution must contain the least amount of lines to get all given ants across the network. Obviously, there are some basic constraints. To be the first to arrive, ants will need to take the shortest path. Ants will also need to avoid traffic jams as well as walking all over their fellow ants.  A single room can only be occupied by a single ant at any given time. At the beginning, all the ants are in the room marked as **start** and must traverse to the room similarly marked as **end**. Doing this while keeping processing time reasonable even if there are thousands of rooms with tens of thousands of links between them.
+The goal of the project is to find the quickest way to get **N** ants across a given maze-like network of rooms. The solution must contain the least amount of lines to get all given ants across the network. Obviously, there are some basic constraints. To be the first to arrive, ants will need to take the shortest path. Ants will also need to avoid traffic jams as well as walking all over their fellow ants. A single room can only be occupied by a single ant at any given time. At the beginning, all the ants are in the room marked as **start** and must traverse to the room similarly marked as **end**. Doing this while keeping processing time reasonable even if there are thousands of rooms with tens of thousands of links between them.
 
 ```c
 usage: ./lem-in [-hpqt] < [file]
@@ -35,7 +35,7 @@ After going over the subject matter for the project in great detail it was quite
 
 **The Algorithm**
 
-We discovered that the most promising algorithm for solving the task at hand was the [Edmonds-Karp algorithm](https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm). The original algorithm computes the maximum flow in a flow network using the [breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search). However, as such the Edmonds-Karp algorithm can’t be implemented for our particular dilemma. This is due to the differences between our problem and the problem that the Edmonds-Karp algorithm is designed to overcome. In summary, normally there exists flow capacity between nodes but in our case the nodes themselves have capacity, and the capacity in-between them is  virtually limitless.
+We discovered that the most promising algorithm for solving the task at hand was the [Edmonds-Karp algorithm](https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm). The original algorithm computes the maximum flow in a flow network using the [breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search). However, as such the Edmonds-Karp algorithm couldn't be implemented for our particular dilemma. This is due to the differences between our problem and the problem that the Edmonds-Karp algorithm is designed to overcome. In summary, normally there exists flow capacity between nodes but in our case the nodes themselves have capacity, and the capacity in-between them is virtually limitless.
 
 **Program Sequence**
 
@@ -55,13 +55,13 @@ An example illustrating the above rules:
 
 ![Lem-in gif_1](https://user-images.githubusercontent.com/77926655/195675245-ef34133f-8aa7-4559-bf64-dc07f646292b.gif)
 
-After each successful run of the breadth-first search the resulting set of paths is collected. After which the path set is compared to  the previous one and the most optimal one is stored. This is done until there are no more possible paths left that connect the start to the end node. In the example above,  the red arrows represent one set of paths and the green arrows represent the second set.
+After each successful run of the breadth-first search the resulting set of paths is collected. After which the path set is compared to the previous one and the most optimal one is stored. This is done until there are no more possible paths left that connect the start to the end node. In the example above, the red arrows represent one set of paths and the green arrows represent the second set.
 
 E.g. sometimes it is better to find two longer routes instead of using the shortest one:
 
 ![lrm_g2](https://user-images.githubusercontent.com/77926655/195675450-77109f47-24d1-44d7-8c55-96f7a089df89.gif)
 
-As can be observed from the example above,  there are times when the right solution is **not to** use the shortest route available [red], but instead the combination of routes that produce the quickest solution [green]. It all depends on:
+As can be observed from the example above, there are times when the right solution is **not to** use the shortest route available [red], but instead the combination of routes that produce the quickest solution [green]. It all depends on:
 
 `I` number of ants
 
