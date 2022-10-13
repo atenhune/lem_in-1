@@ -2,7 +2,7 @@
 
 <img width="500" alt="Screen_Shot_2022-10-11_at_1 32 01_PM" src="https://user-images.githubusercontent.com/77926655/195675044-988c05e4-90d6-4294-a0e1-a92aa461bfa6.png">
 
-‘Your ant colony must move from one location to another. How do you do it in the shortest time possible? The project serves as an introduction to graph traversal algorithms. The program will have to intelligently select paths and choose precise movements for the ants to traverse through a network.’
+‘Your ant colony must move from one location to another. How do you do it in the shortest time possible? This project serves as an introduction to graph traversal algorithms. The program will have to intelligently select paths and choose precise movements for the ants to traverse through a network.’
 
 I.e. intelligent ant colony manager algorithm.
 
