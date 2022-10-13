@@ -15,10 +15,10 @@ The goal of the project is to find the quickest way to get **N** ants across a g
 ```c
 usage: ./lem-in [-hpqt] < [file]
  options:
-	 	-h	help
-	 	-p	additional path information
-	 	-q	quiet mode
-	 	-t	test mode
+	 -h	help
+	 -p	additional path information
+	 -q	quiet mode
+	 -t	test mode
 ```
 
 To run the program after compiling it with Makefile launch it from the root of the repository:
