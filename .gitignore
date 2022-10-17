@@ -56,7 +56,7 @@ dkms.conf
 *.swp
 *.sw*
 *.o
-*test*
+*test
 .vscode/
 *lem-in
 *output*
