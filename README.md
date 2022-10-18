@@ -73,10 +73,10 @@ All the examples are simplified versions of the problems that the graph traversa
 
 **Bonus part**
 
-In order to properly stress-test the algorithm we created a script that can run the program any number of times. The test script also logs the networks that perform worse or suspiciously better than expected. It also clocks the program and keeps track of slower solutions.
+In order to properly stress-test the algorithm we created a script that can run the program any number of times. The test script also logs the networks that perform worse or suspiciously better than expected. It also clocks the program and keeps track of slower solutions. Run the test script from the `tests` directory as follows:
 
 ```bash
-./run.sh 100 -t
+./run.sh 20 -t
 ```
 
 https://user-images.githubusercontent.com/77926655/196386223-f6c1795c-6e95-46d4-8087-8b24822ce623.mov
