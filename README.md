@@ -78,9 +78,8 @@ In order to properly stress-test the algorithm we created a script that can run 
 ```bash
 ./run.sh 100 -t
 ```
-    
 
-[VIDEO]
+https://user-images.githubusercontent.com/77926655/196386223-f6c1795c-6e95-46d4-8087-8b24822ce623.mov
 
 ## **Final thoughts**
 
