@@ -83,4 +83,4 @@ https://user-images.githubusercontent.com/77926655/196386223-f6c1795c-6e95-46d4-
 
 ## **Final thoughts**
 
-to be concluded…
+This project was a great opportunity to hone collaborative and planning skills on a program that was this big in scope. One of the key elements was to structure parts of the program in such a way that working on and debugging it together or separately was possible. As with previous work, proper error handling, self-made debugging tools (some of which didn’t make the final cut) and automated tests were invaluable assets to be had during the project.
